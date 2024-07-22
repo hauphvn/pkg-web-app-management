@@ -6,7 +6,7 @@ export interface IDataDropdown{
 }
 interface DropdownProps extends Omit<AntDropdownProps, 'children'> {
     className?: string,
-    items: any[],
+    // items: any[],
     name: string
 }
 const Dropdown = (props: DropdownProps) => {
@@ -20,7 +20,7 @@ const Dropdown = (props: DropdownProps) => {
             ${props.className} 
             
             `}
-            menu={props.items}
+            // menu={props.items}
             {...props}
         >
             {props.name}
