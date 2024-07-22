@@ -18,7 +18,10 @@ const useAuth = () => {
             }
         )
     }
-    const logout = () => setIsAuthenticated(false);
+    const logout = () => {
+        Cookies.remove(COOKIE_ITEMS.AUTH_TOKEN);
+        return setIsAuthenticated(false);
+    };
     const getToken = () => Cookies.get(COOKIE_ITEMS.AUTH_TOKEN);
     return {isAuthenticated, login, logout, getToken}
 }

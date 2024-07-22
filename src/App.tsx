@@ -1,6 +1,6 @@
 import './App.css'
 import {Navigate, Route, Routes} from "react-router-dom";
-import {ROUTES_PATH} from "./constants/Path.ts";
+import {ROUTES_PATH} from "./constants";
 import Login from "./pages/Login";
 import MainLayout from "./layouts";
 import Dashboard from "./pages/Dashboard";
@@ -10,7 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
 function App() {
 
     return (
-        <div className={'App'}>
+        <div className={'App max-w-[1440px] w-full'}>
 
             <Routes>
                 <Route path={ROUTES_PATH.LOGIN} element={<Login/>}/>
