@@ -1,3 +1,31 @@
-import {Plus, CloseEye, OpenEye} from './SVGIcon.tsx';
+import {
+    Plus,
+    CloseEye,
+    IconArticleMenu,
+    OpenEye,
+    AvatarDefault,
+    IconCartMenu,
+    IconManageMenu,
+    IconStoreMenu,
+    IconLogout,
+    IconLightTheme,
+    IconDarkTheme,
+    IconArrowLeft,
+    IconArrowButton,
+} from './SVGIcon.tsx';
 
-export default {Plus, CloseEye, OpenEye}
+export default {
+    Plus,
+    CloseEye,
+    OpenEye,
+    AvatarDefault,
+    IconManageMenu,
+    IconArrowButton,
+    IconCartMenu,
+    IconArticleMenu,
+    IconLightTheme,
+    IconArrowLeft,
+    IconDarkTheme,
+    IconLogout,
+    IconStoreMenu,
+}

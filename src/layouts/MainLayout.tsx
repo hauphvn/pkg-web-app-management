@@ -1,5 +1,6 @@
 import React from "react";
-import Logout from "../pages/Logout";
+import LeftMenu from "../components/LeftMenu";
+import Logout from "../components/Logout";
 
 interface Props {
     children?: React.ReactNode
@@ -7,9 +8,12 @@ interface Props {
 
 const MainLayout = ({children}: Props) => {
     return (
-        <div className={'min-h-screen grid grid-cols-4 p-8'}>
-            <aside className={'col-span-1 justify-between flex flex-auto flex-col'}>
-                <div className={'flex-2'}>menu item</div>
+        <div className={'min-h-screen grid grid-cols-4 px-8 bg-[#FCFCFD]'}>
+            <aside
+                className={'col-span-1 border-r-[#DDDDE3] border-r-[1px] justify-between flex flex-auto flex-col pr-[24px] pt-[40px]'}>
+                <div className={'flex-2'}>
+                    <LeftMenu/>
+                </div>
                 <div className={'flex-0'}>
                     <Logout/>
                 </div>

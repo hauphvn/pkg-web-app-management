@@ -6,6 +6,8 @@ import MainLayout from "./layouts";
 import Dashboard from "./pages/Dashboard";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
+import Article from "./pages/Article";
+import Store from "./pages/Store";
 
 function App() {
 
@@ -25,6 +27,20 @@ function App() {
                     <ProtectedRoute>
                         <MainLayout>
                             <Product/>
+                        </MainLayout>
+                    </ProtectedRoute>
+                }/>
+                <Route path={ROUTES_PATH.ARTICLE} element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <Article/>
+                        </MainLayout>
+                    </ProtectedRoute>
+                }/>
+                <Route path={ROUTES_PATH.STORE} element={
+                    <ProtectedRoute>
+                        <MainLayout>
+                            <Store/>
                         </MainLayout>
                     </ProtectedRoute>
                 }/>

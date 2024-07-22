@@ -1,6 +1,3 @@
-import Button from "../../components/Button";
-import {Plus} from "../../assets/svgs/SVGIcon.tsx";
-
 const Dashboard = () => {
     // const itemsDropdown: ({ label: string; key: string } | { label: string; key: string })[] =[
     //     {
@@ -14,10 +11,11 @@ const Dashboard = () => {
     // ]
     return (
         <div className={'flex gap-4'}>
-            <Button name={'Thêm mới'}/>
-            <Button disabled name={'Thêm mới'}/>
-            <Button icon={<Plus/>} type={'primary'} name={'default'}/>
-            <Button disabled type={'primary'} name={'primary disable'}/>
+            <div>Doing...</div>
+            {/*<Button name={'Thêm mới'}/>*/}
+            {/*<Button disabled name={'Thêm mới'}/>*/}
+            {/*<Button icon={<Plus/>} type={'primary'} name={'default'}/>*/}
+            {/*<Button disabled type={'primary'} name={'primary disable'}/>*/}
             <hr/>
             {/*<Dropdown items={itemsDropdown} name={'Cửa hàng'}/>*/}
 
