@@ -8,7 +8,6 @@ import LogoPKNText from '../../assets/imgs/logo-pkn-text.png';
 import {yupResolver} from "@hookform/resolvers/yup";
 import {Controller, useForm} from "react-hook-form";
 import Input from "../../components/Input";
-import Button from "../../components/Button";
 import InputPassword from "../../components/InputPassword";
 import {CloseEye, OpenEye} from "../../assets/svgs/SVGIcon.tsx";
 import {Switch} from "antd";
@@ -41,7 +40,7 @@ const Login = () => {
         setSaveSessionLogin(!saveSessionLogin);
     }
     return (
-        <div className={'px-[32px] py-[24px] h-screen flex flex-col'}>
+        <div className={' px-[32px] py-[24px] h-screen flex flex-col'}>
             <div className={''}>
                 <img src={LeftLogo} alt={'logo'}/>
             </div>
@@ -57,8 +56,8 @@ const Login = () => {
                         </div>
                         <div className={'form-login-container'}>
                             <div className="title w-full text-center">
-                                <h1 className={'text-[42px] font-[700] text-[#1C2024]  '}>CHÀO MỪNG TRỞ LẠI</h1>
-                                <h5 className={'text-[#6D6D6D] text-[20px] font-[600]'}>Đăng nhập vào tài khoản của
+                                <h1 className={'text-[42px] font-[700] text-neutrals-900  '}>CHÀO MỪNG TRỞ LẠI</h1>
+                                <h5 className={'text-semantics-grey02 text-[20px] font-[600]'}>Đăng nhập vào tài khoản của
                                     bạn</h5>
                             </div>
                             <div className="form px-[13px] pt-[48px]">
@@ -69,11 +68,12 @@ const Login = () => {
                                         <div className={'control h-[98px]'}>
                                             <label htmlFor={'account'}
                                                    className={'label text-[12px] font-[500] text-[#454545] pb-[7px]'}>
-                                                Tài khoản<span className={'text-required'}>*</span>
+                                                Tài khoản<span className={'text-semantics-red02'}>*</span>
                                             </label>
                                             <div className={'relative flex '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
+                                                        warning={!!errors.account?.message}
                                                         id={'account'}
                                                         className={'bg-[#EBEBEF] h-[50px]'}
                                                         placeholder={'Tài khoản của bạn'}
@@ -82,7 +82,8 @@ const Login = () => {
                                                         value={value || ''}
                                                     />
                                                 </div>
-                                                <span className={'absolute bottom-[-17px] text-required text-[12px]'}>
+                                                <span
+                                                    className={'absolute bottom-[-17px] text-semantics-red02 text-[12px]'}>
                                                 {errors.account?.message || ''}
                                             </span>
                                             </div>
@@ -96,11 +97,12 @@ const Login = () => {
                                         <div className={'control h-[88px]'}>
                                             <label htmlFor={'password'}
                                                    className={'label text-[12px] font-[500] text-[#454545] pb-[7px]'}>
-                                                Tài khoản<span className={'text-required'}>*</span>
+                                                Tài khoản<span className={'text-semantics-red02'}>*</span>
                                             </label>
                                             <div className={'relative flex '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <InputPassword
+                                                        warning={!!errors.password?.message}
                                                         iconOpenEye={<OpenEye/>}
                                                         iconCloseEye={<CloseEye/>}
                                                         type={'password'}
@@ -112,7 +114,8 @@ const Login = () => {
                                                         value={value || ''}
                                                     />
                                                 </div>
-                                                <span className={'absolute bottom-[-17px] text-required text-[12px]'}>
+                                                <span
+                                                    className={'absolute bottom-[-17px] text-semantics-red02 text-[12px]'}>
                                                 {errors.password?.message || ''}
                                             </span>
                                             </div>
@@ -124,13 +127,16 @@ const Login = () => {
                                     <label htmlFor="sessionLogin">Lưu đăng nhập</label>
                                 </div>
 
-                                <Button
-                                    className={'h-[49px] w-[180px] text-[18px] font-[500]'}
-                                    type={'primary'}
+                                <button
+                                    className={`bg-gradient-green  text-neutrals-50
+                                        ' rounded-[8px] px-[26px]  border-[#DDDDE3] 
+                                        ' border h-[49px] w-[180px] text-[18px] font-[500]
+                                        ' disabled:bg-gradient-green-disabled disabled:border-[#E3FFF0] `}
                                     onClick={handleLogin}
                                     disabled={!isDirty || !isValid}
-                                    name={'Đăng nhập'}
-                                />
+                                >
+                                    Đăng nhập
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -10,13 +10,15 @@ import {
     IconLogout,
     IconLightTheme,
     IconDarkTheme,
-    IconArrowLeft,
+    IconArrowRight,
+    IconLineSubMenu,
     IconArrowButton,
 } from './SVGIcon.tsx';
 
 export default {
     Plus,
     CloseEye,
+    IconLineSubMenu,
     OpenEye,
     AvatarDefault,
     IconManageMenu,
@@ -24,7 +26,7 @@ export default {
     IconCartMenu,
     IconArticleMenu,
     IconLightTheme,
-    IconArrowLeft,
+    IconArrowLeft: IconArrowRight,
     IconDarkTheme,
     IconLogout,
     IconStoreMenu,

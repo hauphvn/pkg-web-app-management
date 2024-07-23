@@ -1,16 +1,17 @@
 import {ReactNode} from "react";
-import {IconArrowButton} from "../../assets/svgs/SVGIcon.tsx";
+import {IconArrowButton, IconArrowRight} from "../../assets/svgs/SVGIcon.tsx";
 
 interface MenuItemProps {
     hasChildren?: boolean,
     name: string,
     icon?: ReactNode,
-    isActive?: boolean
+    isActive?: boolean,
+    isOpen?: boolean
 }
 
 const MenuItem = (props: MenuItemProps) => {
     return (
-        <div className={` transition-all duration-150 ${props?.isActive ? 'bg-primary-100' : ''} 
+        <div className={` hover:${!props?.isActive ? 'bg-neutrals-200' : ''} transition-all duration-150 ${props?.isActive ? 'bg-semantics-green03' : '' } 
         rounded-[12px] pr-[16px] py-[12px] flex flex-auto gap-x-[13px] justify-center items-center hover:cursor-pointer`}>
             <div
                 className={`w-[3px] ${props?.isActive ? 'lineActive h-[24px] bg-lineActive rounded-[100px]' : ''}`}></div>
@@ -18,11 +19,11 @@ const MenuItem = (props: MenuItemProps) => {
                 <div>
                     {props?.icon ? props.icon : null}
                 </div>
-                <div className={`${props.isActive} ? 'text-primary' : ''`}>{props.name}</div>
+                <div className={` ${props.isActive ? 'text-semantics-green01' : ''} `}>{props.name}</div>
             </div>
             <div className={'flex-0'}>
                 {props?.hasChildren ? (
-                    <IconArrowButton isActive={props.isActive || false}/>
+                    props?.isOpen ? (<IconArrowButton isActive={props.isActive || false}/>) : (<IconArrowRight isActive={props.isActive || false}/>)
                 ) : null}
             </div>
         </div>

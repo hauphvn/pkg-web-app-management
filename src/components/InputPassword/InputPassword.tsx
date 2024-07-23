@@ -6,6 +6,7 @@ interface InputProps extends Omit<AntInputProps, 'children'> {
     className?: string;
     iconOpenEye?: ReactNode;
     iconCloseEye?: ReactNode;
+    warning?: boolean
 }
 
 const InputPassword = (props: InputProps) => {
@@ -22,7 +23,7 @@ const InputPassword = (props: InputProps) => {
             ))}
             {...props}
             className={`
-        ${props?.className} w-full h-full rounded-[8px] px-[20px] py-[14px] border-none `}
+        ${props?.className} w-full h-full rounded-[8px] px-[20px] py-[14px] ${props?.warning ? 'border-semantics-red02' : 'border-none'}  `}
         />
     );
 };

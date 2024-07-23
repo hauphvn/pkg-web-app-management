@@ -1,5 +1,5 @@
 import './App.css'
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {ROUTES_PATH} from "./constants";
 import Login from "./pages/Login";
 import MainLayout from "./layouts";
@@ -10,6 +10,7 @@ import Article from "./pages/Article";
 import Store from "./pages/Store";
 import {useEffect, useState} from "react";
 import Logo from '../src/assets/imgs/left-logo.png';
+import Notfound from "./pages/Notfound";
 
 function App() {
     const [isMobile, setIsMobile] = useState(false)
@@ -28,7 +29,7 @@ function App() {
             {isMobile ? (
                 <div
                     className="fixed top-0 left-0 w-full h-full bg-gray-900 text-white flex flex-col items-center justify-center z-50">
-                   <img src={Logo} alt={'logo'}/>
+                    <img src={Logo} alt={'logo'}/>
                     <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
                         <h2 className="text-2xl font-bold mb-4 text-primary">
                             Xin lỗi, hệ thống không khả dụng cho thiết bị di động.
@@ -71,7 +72,13 @@ function App() {
                                 </MainLayout>
                             </ProtectedRoute>
                         }/>
-                        <Route path={'*'} element={<Navigate to={ROUTES_PATH.LOGIN} replace/>}/>
+                        <Route path={'*'} element={
+                            <ProtectedRoute>
+                                <MainLayout>
+                                    <Notfound/>
+                                </MainLayout>
+                            </ProtectedRoute>
+                        }/>
                     </Routes>
 
                 </div>

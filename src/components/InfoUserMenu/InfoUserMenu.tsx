@@ -9,7 +9,7 @@ const InfoUserMenu = () => {
                 </div>
                 <div className="info-container">
                     <div className="fullname capitalize text-[20px] font-[600] text-[#454545]">Nguyen van a</div>
-                    <div className={'text-[16px] font-[500] text-[#7E808A]'}>Quản trị viên</div>
+                    <div className={'text-[16px] font-[500] text-neutrals-700'}>Quản trị viên</div>
                 </div>
             </div>
         </div>

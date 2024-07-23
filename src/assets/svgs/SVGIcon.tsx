@@ -96,29 +96,29 @@ const IconManageMenu = (props: { isActive?: boolean }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M8 3H4C3.44772 3 3 3.44772 3 4V8C3 8.55228 3.44772 9 4 9H8C8.55228 9 9 8.55228 9 8V4C9 3.44772 8.55228 3 8 3Z"
                 strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M14 4H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M14 8H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M8 15H4C3.44772 15 3 15.4477 3 16V20C3 20.5523 3.44772 21 4 21H8C8.55228 21 9 20.5523 9 20V16C9 15.4477 8.55228 15 8 15Z"
                 strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M14 16H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M14 20H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
         </svg>
@@ -135,7 +135,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'} hover:stroke-primary`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'} hover:stroke-primary`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -143,7 +143,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
                 d="m18.5 6 4 4-4 4M14 14v3H9"
             />
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'} hover:stroke-primary`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'} hover:stroke-primary`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -164,7 +164,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -172,7 +172,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
                 d="M8 13v4M12 13v4M16 13v4M3.51 12H3.5l.802 7.221A2 2 0 0 0 6.29 21h11.42a2 2 0 0 0 1.988-1.779L20.5 12h-.01M1 8h22M8.75 1.5 5 8h1"
             />
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -192,7 +192,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -200,7 +200,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
                 d="M9 1.5v3.75A2.25 2.25 0 0 1 6.75 7.5H3"
             />
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -217,7 +217,6 @@ const IconLightTheme = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-
         >
             <path
                 className={`${props?.isActive ? 'fill-lineActive' : 'fill-[#7E808A]'}`}
@@ -233,7 +232,6 @@ const IconDarkTheme = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-
         >
             <path
                 className={`${props?.isActive ? 'fill-lineActive' : 'fill-[#7E808A]'}`}
@@ -252,7 +250,7 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -260,7 +258,7 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
                 d="M9.75 21.75v-6h4.5v6"
             />
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -274,14 +272,15 @@ const IconArrowButton = (props: { isActive?: boolean }) => {
     return (
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                 d="M1.5 5.25L9 12.75L16.5 5.25" strokeWidth="1.7" strokeMiterlimit="10"
                 strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
 
     );
 }
-const IconArrowLeft = (props: { isActive?: boolean }) => {
+
+const IconArrowRight = (props: { isActive?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +289,7 @@ const IconArrowLeft = (props: { isActive?: boolean }) => {
             fill="none"
         >
             <path
-                className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#7E808A]'}`}
+                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-[#7E808A]'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -301,7 +300,21 @@ const IconArrowLeft = (props: { isActive?: boolean }) => {
 
     );
 }
+const IconLineSubMenu = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={22}
+            height={41}
+            fill="none"
+        >
+            <path className={'stroke-neutrals-300'} strokeWidth={2} d="M1 0v32a8 8 0 0 0 8 8h13"/>
+        </svg>
+
+    );
+}
 export {
+    IconLineSubMenu,
     IconStoreMenu,
     IconLogout,
     IconCartMenu,
@@ -313,6 +326,6 @@ export {
     IconDarkTheme,
     IconManageMenu,
     IconArrowButton,
-    IconArrowLeft,
+    IconArrowRight,
     IconLightTheme,
 };
