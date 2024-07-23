@@ -132,7 +132,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'} hover:stroke-primary`}
@@ -161,7 +161,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
@@ -189,7 +189,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
@@ -217,7 +217,7 @@ const IconLightTheme = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'fill-lineActive' : 'fill-[#7E808A]'}`}
@@ -233,7 +233,7 @@ const IconDarkTheme = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'fill-lineActive' : 'fill-[#7E808A]'}`}
@@ -249,7 +249,7 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
             width={24}
             height={24}
             fill="none"
-            {...props}
+
         >
             <path
                 className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#454545]'}`}
@@ -288,7 +288,6 @@ const IconArrowLeft = (props: { isActive?: boolean }) => {
             width={18}
             height={18}
             fill="none"
-            {...props}
         >
             <path
                 className={`${props?.isActive ? 'stroke-primary' : 'stroke-[#7E808A]'}`}

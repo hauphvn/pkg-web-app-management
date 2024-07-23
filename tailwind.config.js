@@ -13,6 +13,9 @@ export default {
             },
             lineActive: {
                 DEFAULT: '#F9A92A'
+            },
+            required:{
+                DEFAULT: '#cd220c'
             }
         },
         extend: {

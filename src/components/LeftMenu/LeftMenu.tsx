@@ -12,7 +12,7 @@ const LeftMenu = () => {
         setPathName(location?.pathname);
     }, [location]);
     return (
-        <div>
+        <div className={'max-w-[304px]'}>
             <InfoUserMenu/>
             <div className={'pt-[40px] flex gap-y-[24px] flex-col'}>
                 <NavLink

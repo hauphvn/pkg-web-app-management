@@ -1,5 +1,5 @@
 export const VALIDATION_MESSAGE = {
-    REQUIRED: 'Trường bắt buộc.',
+    REQUIRED: 'Nhập thông tin.',
     NOT_NUMBER_POSITIVE: 'Không chấp nhập số âm.',
     ONLY_NUMBER: 'Chỉ chấp nhân kiểu số.',
     MIN_ZERO: 'Nhỏ nhất là 0.',

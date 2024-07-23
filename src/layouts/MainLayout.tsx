@@ -8,9 +8,9 @@ interface Props {
 
 const MainLayout = ({children}: Props) => {
     return (
-        <div className={'min-h-screen grid grid-cols-4 px-8 bg-[#FCFCFD]'}>
+        <div className={'min-h-screen flex flex-auto px-8 bg-[#FCFCFD]'}>
             <aside
-                className={'col-span-1 border-r-[#DDDDE3] border-r-[1px] justify-between flex flex-auto flex-col pr-[24px] pt-[40px]'}>
+                className={'max-w-[304px] border-r-[#DDDDE3] border-r-[1px] justify-between flex flex-auto flex-col pr-[24px] pt-[40px]'}>
                 <div className={'flex-2'}>
                     <LeftMenu/>
                 </div>
@@ -18,7 +18,7 @@ const MainLayout = ({children}: Props) => {
                     <Logout/>
                 </div>
             </aside>
-            <main className={'col-span-3'}>{children}</main>
+            <main className={'flex-1'}>{children}</main>
         </div>
     );
 };
