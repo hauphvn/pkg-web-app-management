@@ -17,7 +17,7 @@ const Dashboard = () => {
             {/*<Button icon={<Plus/>} type={'primary'} name={'default'}/>*/}
             {/*<Button disabled type={'primary'} name={'primary disable'}/>*/}
             <hr/>
-            {/*<Dropdown items={itemsDropdown} name={'Cửa hàng'}/>*/}
+            {/*<Select items={itemsDropdown} name={'Cửa hàng'}/>*/}
 
         </div>
     );

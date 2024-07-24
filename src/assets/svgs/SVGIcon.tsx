@@ -313,10 +313,88 @@ const IconLineSubMenu = () => {
 
     );
 }
-
+const IconPlus = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={24}
+           height={24}
+           fill="none"
+       >
+           <path
+               className={'stroke-neutrals-50'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               strokeWidth={1.5}
+               d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10ZM12 7.455v9.09M16.546 12H7.455"
+           />
+       </svg>
+   );
+}
+const IconSelectArrowButton = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={12}
+           height={12}
+           fill="none"
+       >
+           <path
+               className={'stroke-semantics-grey01'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               d="m1 3.5 5 5 5-5"
+           />
+       </svg>
+   );
+}
+const IconInputSearch = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={24}
+           height={24}
+           fill="none"
+       >
+           <path
+               className={'stroke-semantics-grey01'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               strokeWidth={1.5}
+               d="m22 22-6.343-6.343M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
+           />
+       </svg>
+   );
+}
+const IconFilter = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={24}
+           height={24}
+           fill="none"
+       >
+           <path
+               className={'stroke-semantics-grey01'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               strokeWidth={1.5}
+               d="m22 5-8 8v8l-4 2V13L2 5V2h20v3Z"
+           />
+       </svg>
+   );
+}
 export {
     IconLineSubMenu,
+    IconFilter,
+    IconSelectArrowButton,
+    IconPlus,
     IconStoreMenu,
+    IconInputSearch,
     IconLogout,
     IconCartMenu,
     IconArticleMenu,

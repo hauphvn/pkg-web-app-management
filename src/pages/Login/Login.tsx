@@ -11,6 +11,7 @@ import Input from "../../components/Input";
 import InputPassword from "../../components/InputPassword";
 import {CloseEye, OpenEye} from "../../assets/svgs/SVGIcon.tsx";
 import {Switch} from "antd";
+import ButtonGradient from "../../components/ButtonGradient";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -57,7 +58,8 @@ const Login = () => {
                         <div className={'form-login-container'}>
                             <div className="title w-full text-center">
                                 <h1 className={'text-[42px] font-[700] text-neutrals-900  '}>CHÀO MỪNG TRỞ LẠI</h1>
-                                <h5 className={'text-semantics-grey02 text-[20px] font-[600]'}>Đăng nhập vào tài khoản của
+                                <h5 className={'text-semantics-grey02 text-[20px] font-[600]'}>Đăng nhập vào tài khoản
+                                    của
                                     bạn</h5>
                             </div>
                             <div className="form px-[13px] pt-[48px]">
@@ -127,16 +129,12 @@ const Login = () => {
                                     <label htmlFor="sessionLogin">Lưu đăng nhập</label>
                                 </div>
 
-                                <button
-                                    className={`bg-gradient-green  text-neutrals-50
-                                        ' rounded-[8px] px-[26px]  border-[#DDDDE3] 
-                                        ' border h-[49px] w-[180px] text-[18px] font-[500]
-                                        ' disabled:bg-gradient-green-disabled disabled:border-[#E3FFF0] `}
+                                <ButtonGradient
+                                   className={'h-[49px] w-[180px] text-[18px] px-[26px]'}
                                     onClick={handleLogin}
                                     disabled={!isDirty || !isValid}
-                                >
-                                    Đăng nhập
-                                </button>
+                                    name={'Đăng nhập'}
+                                />
                             </div>
                         </div>
                     </div>

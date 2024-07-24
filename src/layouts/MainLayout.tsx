@@ -8,7 +8,7 @@ interface Props {
 
 const MainLayout = ({children}: Props) => {
     return (
-        <div className={'min-h-screen flex flex-auto px-8 bg-[#FCFCFD]'}>
+        <div className={'min-h-screen flex flex-auto pl-8 bg-[#FCFCFD]'}>
             <aside
                 className={'max-w-[304px] border-r-[#DDDDE3] border-r-[1px] justify-between flex flex-auto flex-col pr-[24px] pt-[40px]'}>
                 <div className={'flex-2'}>
