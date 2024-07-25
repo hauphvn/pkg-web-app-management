@@ -3,11 +3,84 @@
 @tailwind utilities;
 
 :root {
-    --color-head-table: theme('colors.neutrals.50');
+    --color-neutrals-50: theme('colors.neutrals.50');
+    --color-neutrals-300: theme('colors.neutrals.300');
+    --color-neutrals-900: theme('colors.neutrals.900');
+    --color-semantics-grey01: theme('colors.semantics.grey01');
+    --color-box-shadow: #00000026;
 }
 
-table th.ant-table-cell {
-    background: var(--color-head-table) !important;
-    width: fit-content!important;
-    /*border: 1px solid red;*/
+table .ant-table-thead th.ant-table-cell {
+    background: var(--color-neutrals-50) !important;
+    width: fit-content !important;
+}
+table .ant-table-thead th.ant-table-cell>div {
+    width: 100%;
+}
+.ant-table-wrapper .ant-table-column-sorter-up,.ant-table-column-sorter-down{
+    color: var(--color-neutrals-50);
+}
+.ant-table-wrapper .ant-table-column-sorter-up,.ant-table-column-sorter-down .active{
+    /*color: var(--color-neutrals-50) !important;*/
+}
+.ant-table-thead .ant-table-column-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+table th.ant-table-cell > div {
+    font-size: 16px;
+    color: var(--color-neutrals-50);
+    background: var(--color-neutrals-900);
+    padding: 8px 24px 8px 24px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    /*text-[16px] text-neutrals-50 bg-neutrals-900 py-[5px] px-[24px] rounded-[8px]*/
+}
+
+table thead tr th {
+    border-bottom: none !important;
+}
+
+.ant-table-tbody > tr {
+    margin-bottom: 24px !important;
+    /*width: 100%;*/
+    /*min-width: 100%;*/
+    /*max-width: 100%;*/
+}
+.ant-table-tbody > tr > td:first-child{
+    border-radius: 0 0 0 8px;
+}
+.ant-table-tbody > tr > td:last-child{
+    border-radius: 0 0 8px 0;
+}
+.ant-table-tbody > tr{
+    transition: box-shadow 0.1s ease-in-out;
+}
+.ant-table-tbody > tr > td {
+    border: none !important;
+    border-bottom: 1px solid var(--color-neutrals-300) !important;
+}
+.ant-table-tbody > tr{
+    /*margin-top: 24px!important;*/
+}
+.ant-table-tbody > tr:hover {
+    box-shadow: 1px 0 8px 0 var(--color-box-shadow);
+}
+
+tbody tr.ant-table-row.ant-table-row-level-0 {
+    background: var(--color-neutrals-50);
+}
+
+
+tbody .ant-table-row .ant-table-cell {
+    padding: 12px 16px 12px 17px !important;
+}
+
+td.ant-table-cell {
+    background: var(--color-neutrals-50) !important;
+    color: var(--color-semantics-grey01)
 }

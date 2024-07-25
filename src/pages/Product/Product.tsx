@@ -3,14 +3,16 @@ import ButtonGradient from "../../components/ButtonGradient";
 import {
     IconFilter,
     IconInputSearch,
-    IconManageMenu,
+    IconManageMenu, IconPen,
     IconPlus,
-    IconSelectArrowButton
+    IconPrinter, IconRecycling,
+    IconSelectArrowButton, IconWarehouse
 } from "../../assets/svgs/SVGIcon.tsx";
 import Select from "../../components/Select";
 import {SelectOption} from "../../components/Select/Select.tsx";
 import Input from "../../components/Input";
-import {Space, Table, TableProps, Tag} from "antd";
+import {Table, TableProps} from "antd";
+import ProductImg from '../../assets/imgs/productImg.png'
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -23,83 +25,159 @@ const categories: SelectOption[] = [
 // dummy data table
 interface DataType {
     key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
+    image: string;
+    productID: string;
+    productName: string;
+    productCode: string;
+    amount: string;
+    price: string;
 }
 
 const columns: TableProps<DataType>['columns'] = [
     {
-        title: () => (<div className={'text-[16px] text-neutrals-50 bg-neutrals-900 py-[5px] px-[24px] rounded-[8px] w-[116px] '}>hauphvn</div>),
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <a>{text}</a>,
+        title: () => (<div className={''}>Hình ảnh</div>),
+        dataIndex: 'image',
+        key: 'image',
+        align: 'center',
+        render: (_, {image}) => {
+            return (
+                <div className={' flex justify-center'}>
+                    <img className={'w-[88px] h-[88px] '} src={image} alt={'product'}/>
+                </div>
+            )
+        },
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: () => (<div className={''}>Sản phẩm</div>),
+        dataIndex: 'productName',
+        key: 'productName',
+        align: 'center',
+        sorter: (a, b) => a.productName.localeCompare(b.productName),
+        render: (_, {productName, price}) => {
+            return (
+                <div className={'text-left flex flex-col gap-y-[8px] justify-center'}>
+                    <div className={' font-[600] text-[20px]'}>
+                        {productName}
+                    </div>
+                    <div className={'text-[14px]'}><span className={'text-semantics-grey02'}>Giá bán:</span> <span
+                        className={'text-accent-a01'}>{price} VND</span></div>
+                </div>
+            )
+        }
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: () => (<div className={''}>Mã sản phẩm</div>),
+        dataIndex: 'productCode',
+        key: 'productCode',
+        align: 'center',
+        sorter: (a, b) => a.productCode.localeCompare(b.productCode),
+        render: (_, {productCode}) => {
+            return (
+                <div className={' font-[500] text-[18px]'}>
+                    {productCode}
+                </div>
+            )
+        }
     },
     {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: (_, { tags }) => (
-            <>
-                {tags.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
+        title: () => (<div className={''}>Số lượng</div>),
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'center',
+        sorter: (a, b) => a.amount.localeCompare(b.amount),
+        render: (_, {amount}) => {
+            return (
+                <div className={' font-[500] text-[18px]'}>
+                    {amount}
+                </div>
+            )
+        }
     },
     {
-        title: 'Action',
+        title: () => (<div className={''}>Chỉnh sửa</div>),
+        dataIndex: 'action',
         key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
-            </Space>
-        ),
+        align: 'center',
+        render: () => {
+            return (
+                <div className={'min-w-[239px] flex flex-col gap-y-[10px] w-full justify-center items-center'}>
+                    <div className="print-container gap-x-[12px] flex items-center">
+                        <div
+                            className="print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] border-neutrals-500 rounded-[8px]">
+                            <input className={'w-[50px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                   placeholder={'TL Vàng'} type="text"/>
+                            <div className={'border-semantics-grey01 border-l-[1px] h-[14px]'}></div>
+                            <input className={'w-[84px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                   placeholder={'Tiền công'} type="text"/>
+                        </div>
+                        <div
+                            className="printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]">
+                            <IconPrinter/>
+                        </div>
+                    </div>
+                    <div className="actions-container flex gap-x-[12px] ">
+                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                            <IconPen/>
+                        </div>
+                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                            <IconWarehouse/>
+                        </div>
+                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                            <IconRecycling/>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     },
 ];
 
 const data: DataType[] = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
+        productID: '1',
+        productName: 'Cỏ 4 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        image: ProductImg,
+        productCode: 'PK00000001',
+        amount: '1030',
+        price: '1,000,000,000',
     },
     {
         key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
+        productID: '2',
+        productName: 'Cỏ 5 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        image: ProductImg,
+        productCode: 'PK00000002',
+        amount: '1200',
+        price: '1,000,000,000',
     },
     {
         key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
+        productID: '3',
+        productName: 'Cỏ 6 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        image: ProductImg,
+        productCode: 'PK00000003',
+        amount: '1010',
+        price: '1,000,000,000',
     },
+    {
+        key: '4',
+        productID: '4',
+        productName: 'Cỏ 42 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        image: ProductImg,
+        productCode: 'PK00000004',
+        amount: '1004',
+        price: '1,000,000,000',
+    },
+    {
+        key: '5',
+        productID: '5',
+        productName: 'Cỏ 4 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        image: ProductImg,
+        productCode: 'PK00000005',
+        amount: '100',
+        price: '1,000,000,000',
+    }
 ];
 // end dummy data table
 const Product = () => {
@@ -145,7 +223,12 @@ const Product = () => {
             </div>
             <div className="table-container mt-[24px] pl-[24px] pr-[32px]">
                 <Table
-                    columns={columns} dataSource={data}/>;
+                    pagination={{position: ["bottomCenter"]}}
+                    columns={columns} dataSource={data}
+                    showSorterTooltip={{
+                        title: 'Click để sắp xếp'
+                    }}
+                />
             </div>
         </div>
     );

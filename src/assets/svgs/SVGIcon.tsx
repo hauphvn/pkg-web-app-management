@@ -388,7 +388,120 @@ const IconFilter = () => {
        </svg>
    );
 }
+const IconPen = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={24}
+           height={24}
+           fill="none"
+       >
+           <path
+              className={'stroke-brand01'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               strokeWidth={1.5}
+               d="M2.25 21.75h19.5M8.598 16.902l-5.25 1.5 1.5-5.25L14.973 3.027a2.651 2.651 0 1 1 3.75 3.75L8.598 16.902ZM13.5 4.5l3.75 3.75"
+           />
+       </svg>
+   );
+}
+const IconWarehouse = () => {
+   return (
+       <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width={24}
+           height={24}
+           fill="none"
+       >
+           <path
+               className={'stroke-semantics-yellow02'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               d="M1.5 4.875 6.75 7.5 12 4.875M6.75 7.5v6.375"
+           />
+           <path
+                className={'stroke-semantics-yellow02'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               d="M12 4.875 6.75 2.249 1.5 4.875v6.375l5.25 2.625L12 11.25V4.875ZM12 4.875 17.25 7.5l5.25-2.625M17.25 7.5v6.375"
+           />
+           <path
+                className={'stroke-semantics-yellow02'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               d="m22.5 4.875-5.25-2.626L12 4.875v6.375l5.25 2.625 5.25-2.625V4.875ZM6.75 13.875 12 16.5l5.25-2.625M12 16.5v6.375"
+           />
+           <path
+                className={'stroke-semantics-yellow02'}
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               d="M17.25 13.875 12 11.249l-5.25 2.626v6.375L12 22.875l5.25-2.625v-6.375Z"
+           />
+       </svg>
+   );
+}
+const IconPrinter = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={'stroke-semantics-grey01'}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M7.667 7V3.667c0-.736.597-1.333 1.333-1.333h6c.736 0 1.333.597 1.333 1.333V7"
+            />
+            <path
+                className={'stroke-semantics-grey01'}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M7.667 17.667h-2A2.666 2.666 0 0 1 3 15V9.667A2.666 2.666 0 0 1 5.667 7h12.666A2.666 2.666 0 0 1 21 9.667V15a2.666 2.666 0 0 1-2.667 2.667h-2"
+            />
+            <path
+                className={'stroke-semantics-grey01'}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+               d="M16.333 13v7.333c0 .736-.597 1.334-1.333 1.334H9a1.334 1.334 0 0 1-1.333-1.334V13h8.666Z"
+           />
+       </svg>
+   );
+}
+const IconRecycling = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                 className={'stroke-semantics-red02'}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="m19.5 8.25-.637 12.119a2.25 2.25 0 0 1-2.247 2.131H7.384a2.25 2.25 0 0 1-2.247-2.131L4.5 8.25M21.75 5.25H2.25M9 5.25V2.625c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V5.25"
+            />
+        </svg>
+    );
+}
 export {
+    IconRecycling,
+    IconPen,
+    IconWarehouse,
+    IconPrinter,
     IconLineSubMenu,
     IconFilter,
     IconSelectArrowButton,

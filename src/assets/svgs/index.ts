@@ -14,14 +14,22 @@ import {
     IconArrowRight,
     IconFilter,
     IconLineSubMenu,
+    IconPrinter,
     IconSelectArrowButton,
     IconPlus,
+    IconPen,
+    IconWarehouse,
+    IconRecycling,
     IconArrowButton,
 } from './SVGIcon.tsx';
 
 export default {
+    IconWarehouse,
+    IconPen,
+    IconRecycling,
     Plus,
     CloseEye,
+    IconPrinter,
     IconFilter,
     IconLineSubMenu,
     IconInputSearch,

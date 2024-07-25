@@ -16,7 +16,7 @@ const Logout = () => {
         setTheme(theme);
     }
     return (
-        <div className={'flex flex-col gap-y-[24px] mb-4'}>
+        <div className={'flex flex-col gap-y-[24px] pb-10'}>
             <div onClick={handleLogout}
                  className="btnLogout px-[12px] py-[16px] hover: cursor-pointer flex gap-x-[16px] items-center">
                 <IconLogout/>
