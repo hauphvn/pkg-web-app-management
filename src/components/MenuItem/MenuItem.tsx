@@ -11,7 +11,7 @@ interface MenuItemProps {
 
 const MenuItem = (props: MenuItemProps) => {
     return (
-        <div className={` hover:${!props?.isActive ? 'bg-neutrals-200' : ''} transition-all duration-150 ${props?.isActive ? 'bg-semantics-green03' : '' } 
+        <div className={`hover:${!props?.isActive ? 'bg-neutrals-200' : ''} transition-all duration-150 ${props?.isActive ? 'bg-semantics-green03' : '' } 
         rounded-[12px] pr-[16px] py-[12px] flex flex-auto gap-x-[13px] justify-center items-center hover:cursor-pointer`}>
             <div
                 className={`w-[3px] ${props?.isActive ? 'lineActive h-[24px] bg-lineActive rounded-[100px]' : ''}`}></div>
