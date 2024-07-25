@@ -35,7 +35,7 @@ interface DataType {
 
 const columns: TableProps<DataType>['columns'] = [
     {
-        title: () => (<div className={''}>Hình ảnh</div>),
+        title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
         dataIndex: 'image',
         key: 'image',
         align: 'center',
@@ -100,7 +100,7 @@ const columns: TableProps<DataType>['columns'] = [
         align: 'center',
         render: () => {
             return (
-                <div className={'min-w-[239px] flex flex-col gap-y-[10px] w-full justify-center items-center'}>
+                <div className={' flex flex-col gap-y-[10px] w-full justify-center items-center'}>
                     <div className="print-container gap-x-[12px] flex items-center">
                         <div
                             className="print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] border-neutrals-500 rounded-[8px]">
