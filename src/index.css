@@ -10,8 +10,9 @@
     --color-box-shadow: #00000026;
 }
 
-table .ant-table-thead {
-    /*display: flex;*/
+table .ant-table-thead tr > th {
+    display: flex;
+    justify-content: center;
 }
 
 .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before, .ant-table-wrapper .ant-table-thead > tr > td:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
@@ -58,9 +59,6 @@ table .ant-table-tbody {
     width: 100% !important;
 }
 
-table colgroup {
-    /*display: none!important;*/
-}
 
 table .ant-table-tbody .ant-table-row-level-0 {
     display: flex;
@@ -93,27 +91,13 @@ table .ant-table-tbody .ant-table-row > td:nth-child(5) {
     min-width: 24.25%;
 }
 
-/*.ant-table-tbody > tr > td:first-child{*/
-/*    border-radius: 0 0 0 8px;*/
-/*}*/
-/*.ant-table-tbody > tr > td:last-child{*/
-/*    border-radius: 0 0 8px 0;*/
-/*}*/
 table .ant-table-thead th.ant-table-cell {
     background: var(--color-neutrals-50) !important;
-    /*width: fit-content !important;*/
 }
 
-table .ant-table-thead th.ant-table-cell > div {
-    /*width: 100%;*/
-}
 
 .ant-table-wrapper .ant-table-column-sorter-up, .ant-table-column-sorter-down {
     color: var(--color-neutrals-50);
-}
-
-.ant-table-wrapper .ant-table-column-sorter-up, .ant-table-column-sorter-down .active {
-    /*color: var(--color-neutrals-50) !important;*/
 }
 
 .ant-table-thead .ant-table-column-title {
@@ -132,7 +116,7 @@ table th.ant-table-cell > div {
     justify-content: center;
     align-items: center;
     font-weight: 500;
-    /*text-[16px] text-neutrals-50 bg-neutrals-900 py-[5px] px-[24px] rounded-[8px]*/
+    width: 100%;
 }
 
 table thead tr th {
@@ -141,9 +125,6 @@ table thead tr th {
 
 .ant-table-tbody > tr {
     margin-bottom: 24px !important;
-    /*width: 100%;*/
-    /*min-width: 100%;*/
-    /*max-width: 100%;*/
 }
 
 .ant-table-tbody > tr {
@@ -178,10 +159,6 @@ td.ant-table-cell {
 }
 
 /*custom css item*/
-.sub-item-manage-menu-left:last-child {
-    /*border-left: none;*/
-}
-
 .sub-item-manage-menu-left-line {
     border: 2px solid var(--color-neutrals-300);
     left: 0;
