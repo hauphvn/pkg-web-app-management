@@ -566,7 +566,7 @@ const UpdateProduct = (props: UpdateProductProps) => {
                 </div>
                 <div className="submit-container flex gap-x-[8px] pt-[5px] ">
                     <Button onClick={props.onClose} className={'w-[210px] h-[53px]'} name={'Hủy'}/>
-                    <ButtonGradient className={'w-[210px] h-[53px]'} disabled name={'Thêm sản phẩm'}/>
+                    <ButtonGradient className={'w-[210px] h-[53px]'} disabled name={'Cập nhật'}/>
                 </div>
             </div>
         </Drawer>
