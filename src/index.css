@@ -27,7 +27,7 @@ table .ant-table-thead > tr {
 }
 
 table .ant-table-thead > tr > th {
-    padding: 16px 0 0 0 !important;
+    padding: 0 !important;
 }
 
 table .ant-table-thead > tr > th:nth-child(1) {
