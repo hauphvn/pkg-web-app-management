@@ -8,7 +8,7 @@ export const formLoginSchema = () => {
     })
 }
 
-export const formAddProduct = () => {
+export const formAddEditProduct = () => {
     return yup.object().shape({
         productName: stringRequired,
         store: stringRequired,
@@ -27,7 +27,7 @@ export const formAddProduct = () => {
         isOnlineSale: yup.boolean(),
     })
 }
-export const formAddProductDefault = {
+export const formAddEditProductDefault = {
     productName: '',
     store: '',
     warranty: '',

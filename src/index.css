@@ -298,5 +298,11 @@ td.ant-table-cell {
     background-color: white;
     border-bottom: none;
 }
-
+#update-product-container .rsw-editor{
+    min-height: 70vh;
+}
+#update-product-container .rsw-toolbar{
+    background-color: white;
+    border-bottom: none;
+}
 /*editor*/

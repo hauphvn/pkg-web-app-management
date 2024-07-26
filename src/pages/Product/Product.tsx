@@ -13,8 +13,10 @@ import {SelectOption} from "../../components/Select/Select.tsx";
 import Input from "../../components/Input";
 import {Table, TableProps} from "antd";
 import ProductImg from '../../assets/imgs/productImg.png'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AddNewProduct from "../../components/AddNewProduct";
+import {IProduct} from "../../types";
+import UpdateProduct from "../../components/UpdateProduct";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -34,108 +36,6 @@ interface DataType {
     amount: string;
     price: string;
 }
-
-const columns: TableProps<DataType>['columns'] = [
-    {
-        title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
-        dataIndex: 'image',
-        key: 'image',
-        align: 'center',
-        render: (_, {image}) => {
-            return (
-                <div className={' flex justify-center'}>
-                    <img className={'w-[88px] h-[88px] '} src={image} alt={'product'}/>
-                </div>
-            )
-        },
-    },
-    {
-        title: () => (<div className={''}>Sản phẩm</div>),
-        dataIndex: 'productName',
-        key: 'productName',
-        align: 'center',
-        sorter: (a, b) => a.productName.localeCompare(b.productName),
-        render: (_, {productName, price}) => {
-            return (
-                <div className={'text-left flex flex-col gap-y-[8px] justify-center'}>
-                    <div className={' font-[600] text-[20px]'}>
-                        {productName}
-                    </div>
-                    <div className={'text-[14px]'}><span className={'text-semantics-grey02'}>Giá bán:</span> <span
-                        className={'text-accent-a01'}>{price} VND</span></div>
-                </div>
-            )
-        }
-    },
-    {
-        title: () => (<div className={''}>Mã sản phẩm</div>),
-        dataIndex: 'productCode',
-        key: 'productCode',
-        align: 'center',
-        sorter: (a, b) => a.productCode.localeCompare(b.productCode),
-        render: (_, {productCode}) => {
-            return (
-                <div className={' font-[500] text-[18px]'}>
-                    {productCode}
-                </div>
-            )
-        }
-    },
-    {
-        title: () => (<div className={''}>Số lượng</div>),
-        dataIndex: 'amount',
-        key: 'amount',
-        align: 'center',
-        sorter: (a, b) => a.amount.localeCompare(b.amount),
-        render: (_, {amount}) => {
-            return (
-                <div className={' font-[500] text-[18px]'}>
-                    {amount}
-                </div>
-            )
-        }
-    },
-    {
-        title: () => (<div className={''}>Chỉnh sửa</div>),
-        dataIndex: 'action',
-        key: 'action',
-        align: 'center',
-        render: () => {
-            return (
-                <div className={' flex flex-col gap-y-[10px] w-full justify-center items-center'}>
-                    <div className="print-container gap-x-[12px] flex items-center">
-                        <div
-                            className="print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] border-neutrals-500 rounded-[8px]">
-                            <input className={'w-[50px] outline-0 text-[12px] p-0 m-0 leading-none'}
-                                   placeholder={'TL Vàng'} type="text"/>
-                            <div className={'border-semantics-grey01 border-l-[1px] h-[14px]'}></div>
-                            <input className={'w-[84px] outline-0 text-[12px] p-0 m-0 leading-none'}
-                                   placeholder={'Tiền công'} type="text"/>
-                        </div>
-                        <div
-                            className="printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]">
-                            <IconPrinter/>
-                        </div>
-                    </div>
-                    <div className="actions-container flex gap-x-[12px] ">
-                        <div
-                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                            <IconPen/>
-                        </div>
-                        <div
-                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                            <IconWarehouse/>
-                        </div>
-                        <div
-                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                            <IconRecycling/>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    },
-];
 
 const data: DataType[] = [
     {
@@ -187,6 +87,129 @@ const data: DataType[] = [
 // end dummy data table
 const Product = () => {
     const [showAddNew, setShowAddNew] = useState(false);
+    const columns: TableProps<DataType>['columns'] = [
+        {
+            title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
+            dataIndex: 'image',
+            key: 'image',
+            align: 'center',
+            render: (_, {image}) => {
+                return (
+                    <div className={' flex justify-center'}>
+                        <img className={'w-[88px] h-[88px] '} src={image} alt={'product'}/>
+                    </div>
+                )
+            },
+        },
+        {
+            title: () => (<div className={''}>Sản phẩm</div>),
+            dataIndex: 'productName',
+            key: 'productName',
+            align: 'center',
+            sorter: (a, b) => a.productName.localeCompare(b.productName),
+            render: (_, {productName, price}) => {
+                return (
+                    <div className={'text-left flex flex-col gap-y-[8px] justify-center'}>
+                        <div className={' font-[600] text-[20px]'}>
+                            {productName}
+                        </div>
+                        <div className={'text-[14px]'}><span className={'text-semantics-grey02'}>Giá bán:</span> <span
+                            className={'text-accent-a01'}>{price} VND</span></div>
+                    </div>
+                )
+            }
+        },
+        {
+            title: () => (<div className={''}>Mã sản phẩm</div>),
+            dataIndex: 'productCode',
+            key: 'productCode',
+            align: 'center',
+            sorter: (a, b) => a.productCode.localeCompare(b.productCode),
+            render: (_, {productCode}) => {
+                return (
+                    <div className={' font-[500] text-[18px]'}>
+                        {productCode}
+                    </div>
+                )
+            }
+        },
+        {
+            title: () => (<div className={''}>Số lượng</div>),
+            dataIndex: 'amount',
+            key: 'amount',
+            align: 'center',
+            sorter: (a, b) => a.amount.localeCompare(b.amount),
+            render: (_, {amount}) => {
+                return (
+                    <div className={' font-[500] text-[18px]'}>
+                        {amount}
+                    </div>
+                )
+            }
+        },
+        {
+            title: () => (<div className={''}>Chỉnh sửa</div>),
+            dataIndex: 'action',
+            key: 'action',
+            align: 'center',
+            render: (_, {productID, productName, price,productCode}) => {
+                return (
+                    <div className={' flex flex-col gap-y-[10px] w-full justify-center items-center'}>
+                        <div className="print-container gap-x-[12px] flex items-center">
+                            <div
+                                className="print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] border-neutrals-500 rounded-[8px]">
+                                <input className={'w-[50px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                       placeholder={'TL Vàng'} type="text"/>
+                                <div className={'border-semantics-grey01 border-l-[1px] h-[14px]'}></div>
+                                <input className={'w-[84px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                       placeholder={'Tiền công'} type="text"/>
+                            </div>
+                            <div
+                                className="printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]">
+                                <IconPrinter/>
+                            </div>
+                        </div>
+                        <div className="actions-container flex gap-x-[12px] ">
+                            <div
+                                onClick={() => onEditProduct({productID, productName, price, productCode})}
+                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                                <IconPen/>
+                            </div>
+                            <div
+                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                                <IconWarehouse/>
+                            </div>
+                            <div
+                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                                <IconRecycling/>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        },
+    ];
+    const [productEdit, setProductEdit] = useState<IProduct>({
+        productID: '',
+        salePrice: '',
+        productName: ''
+    })
+    const [showUpdate, setShowUpdate] = useState(false);
+    useEffect(() => {
+        console.log(productEdit)
+        if (productEdit?.productID) {
+            setShowUpdate(true);
+        }
+    }, [productEdit?.productID])
+
+    function onEditProduct(param: { productID: string; price: string; productName: string, productCode: string }) {
+        setProductEdit({
+            productID: param.productID,
+            salePrice: param.price,
+            productName: param.productName,
+            productCode: param.productCode
+        })
+    }
 
     function preOnShowAddNew() {
         setShowAddNew(true);
@@ -194,6 +217,10 @@ const Product = () => {
 
     function preOnCloseAddNew() {
         setShowAddNew(false);
+    }
+
+    function preOnCloseUpdate() {
+        setShowUpdate(false);
     }
 
     return (
@@ -248,6 +275,7 @@ const Product = () => {
                 />
             </div>
             <AddNewProduct show={showAddNew} onClose={preOnCloseAddNew}/>
+            <UpdateProduct show={showUpdate} onClose={preOnCloseUpdate} productEdit={productEdit}/>
         </div>
     );
 };

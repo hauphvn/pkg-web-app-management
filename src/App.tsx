@@ -44,6 +44,13 @@ function App() {
 
                     <Routes>
                         <Route path={ROUTES_PATH.LOGIN} element={<Login/>}/>
+                        <Route path={ROUTES_PATH.HOME} element={
+                            <ProtectedRoute>
+                                <MainLayout>
+                                    <Dashboard/>
+                                </MainLayout>
+                            </ProtectedRoute>
+                        }/>
                         <Route path={ROUTES_PATH.DASHBOARD} element={
                             <ProtectedRoute>
                                 <MainLayout>

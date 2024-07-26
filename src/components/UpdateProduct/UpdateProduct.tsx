@@ -1,7 +1,7 @@
 import {Drawer} from "antd";
 import Button from "../Button";
 import ButtonGradient from "../ButtonGradient";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {formAddEditProduct, formAddEditProductDefault} from "../../constants/SchemaYups.ts";
@@ -17,14 +17,16 @@ import {
     Toolbar
 } from 'react-simple-wysiwyg';
 import ImageProductImport from "../ImageProductImport";
+import {IProduct} from "../../types";
 
-interface AddNewProductProps {
+interface UpdateProductProps {
     show: boolean,
     onClose: () => void,
-    onSubmit?: () => void
+    onSubmit?: () => void,
+    productEdit: IProduct
 }
 
-const AddNewProduct = (props: AddNewProductProps) => {
+const UpdateProduct = (props: UpdateProductProps) => {
     const [tabIndex, setTabIndex] = useState<'info' | 'desc' | 'image'>('info');
     const [htmlDescription, setHtmlDescription] = useState('');
 
@@ -34,7 +36,8 @@ const AddNewProduct = (props: AddNewProductProps) => {
 
     const {
         formState: {errors},
-        control: controlAddProduct,
+        control: controlEditProduct,
+        reset
     } = useForm({
         resolver: yupResolver(formAddEditProduct()),
         mode: 'all',
@@ -45,17 +48,36 @@ const AddNewProduct = (props: AddNewProductProps) => {
         setHtmlDescription(e.target.value);
     }
 
+    useEffect(() => {
+        reset({
+            productName: props.productEdit?.productName,
+            store: props.productEdit?.store,
+            warranty: props.productEdit?.warranty,
+            unit: props.productEdit?.unit,
+            importPrice: props.productEdit?.importPrice,
+            salePrice: props.productEdit?.salePrice,
+            discount: props.productEdit?.discount,
+            priceAfterDiscount: props.productEdit?.priceAfterDiscount,
+            quantity: props.productEdit?.quantity,
+            weight: props.productEdit?.weight,
+            length: props.productEdit?.length,
+            width: props.productEdit?.width,
+            height: props.productEdit?.height,
+            isContactPrice: props.productEdit?.isContactPrice,
+            isOnlineSale: props.productEdit?.isOnlineSale,
+        })
+    }, [props.productEdit?.productID])
     return (
         <Drawer
             width={489}
-            className={'add-new-product-drawer transition-all duration-300'}
+            className={'update-product-drawer transition-all duration-300'}
             styles={{header: {paddingBottom: 0}}}
-            title={<div className={'text-semantics-grey01 text-[32px] font-[500]'}>Thêm mới</div>}
+            title={<div className={'text-semantics-grey01 text-[32px] font-[500]'}>{props?.productEdit?.productCode}</div>}
             destroyOnClose maskClosable={false} closeIcon={null} onClose={props.onClose}
             open={props.show}>
-            <div id={'add-new-product-container'}
-                 className={'add-new-product-container flex justify-between flex-col h-full w-[435px]'}>
-                <div className="contents-container w-full">
+            <div id={'update-product-container'}
+                 className={'update-product-container flex justify-between flex-col h-full w-[435px]'}>
+                <div className="update-contents-container w-full">
                     <div className="actions-tab flex mb-[24px] fixed w-full gap-x-[17px] ">
                         <div
                             onClick={() => preOnTabClick('info')}
@@ -82,7 +104,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                     <div
                         className={`${tabIndex === 'info' ? 'visible' : 'hidden'} form-container mt-[70px] max-h-[75vh] overflow-y-scroll scroll-smooth`}>
                         <Controller
-                            control={controlAddProduct}
+                            control={controlEditProduct}
                             name='productName'
                             render={({field: {onChange, onBlur, value}}) => (
                                 <div className={'control h-[98px]'}>
@@ -112,7 +134,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             )}
                         />
                         <Controller
-                            control={controlAddProduct}
+                            control={controlEditProduct}
                             name='store'
                             render={() => (
                                 <div className={'control h-[92px]'}>
@@ -143,7 +165,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[40px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='warranty'
                                     render={() => (
                                         <div className={'control h-[98px]'}>
@@ -179,7 +201,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[40px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='unit'
                                     render={() => (
                                         <div className={'control h-[98px]'}>
@@ -214,7 +236,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[8px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='importPrice'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -246,7 +268,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             </div>
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='salePrice'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -280,7 +302,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[8px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='discount'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[92px]'}>
@@ -312,7 +334,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             </div>
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='priceAfterDiscount'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[92px]'}>
@@ -347,7 +369,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[8px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='quantity'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -379,7 +401,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             </div>
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='weight'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -413,7 +435,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <div className="form-row flex gap-x-[8px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='length'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -445,7 +467,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             </div>
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='width'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -477,7 +499,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                             </div>
                             <div className={'flex-1'}>
                                 <Controller
-                                    control={controlAddProduct}
+                                    control={controlEditProduct}
                                     name='height'
                                     render={({field: {onChange, onBlur, value}}) => (
                                         <div className={'control h-[98px]'}>
@@ -521,7 +543,6 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                     <BtnUnderline/>
                                     <BtnLink/>
                                     <BtnStrikeThrough/>
-
                                     <BtnBulletList/>
                                     <BtnNumberedList/>
                                 </Toolbar>
@@ -552,4 +573,4 @@ const AddNewProduct = (props: AddNewProductProps) => {
     );
 };
 
-export default AddNewProduct;
+export default UpdateProduct;
