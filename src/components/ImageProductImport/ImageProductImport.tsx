@@ -7,14 +7,16 @@ interface ImageProductImportProps {
 }
 
 const ImageProductImport = (props: ImageProductImportProps) => {
-    const [fileImg, setFileImg] = useState<File | undefined>(undefined);
+    // const [fileImg, setFileImg] = useState<File | undefined>(undefined);
     const [imageUpload, setImageUpload] = useState('')
 
-    function handleImgUpload(event: any) {
+    function handleImgUpload(event: React.ChangeEvent<HTMLInputElement> ) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         const file = event?.target?.files[0];
         const reader = new FileReader();
         reader.onloadend = () => {
-            setFileImg(file);
+            // setFileImg(file);
             setImageUpload(reader?.result?.toString() ||
                 '');
         }
@@ -32,7 +34,7 @@ const ImageProductImport = (props: ImageProductImportProps) => {
                 <div>
                     <div onClick={
                         () => {
-                            setFileImg(undefined);
+                            // setFileImg(undefined);
                             setImageUpload('')
                         }
                     } className={'absolute hover:cursor-pointer right-[10px] top-[10px] z-10 w-[17px] h-[17px] bg-neutrals-200 rounded-full flex justify-center items-center '}>

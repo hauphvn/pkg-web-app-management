@@ -33,7 +33,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
     }
 
     const {
-        formState: {errors, isDirty, isValid},
+        formState: {errors},
         control: controlAddProduct,
     } = useForm({
         resolver: yupResolver(formAddProduct()),
@@ -114,7 +114,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                         <Controller
                             control={controlAddProduct}
                             name='store'
-                            render={({field: {onChange, onBlur, value}}) => (
+                            render={() => (
                                 <div className={'control h-[92px]'}>
                                     <label htmlFor={'store'}
                                            className={'label text-[12px] font-[500] text-neutrals-700 pb-[7px]'}>
@@ -145,7 +145,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                 <Controller
                                     control={controlAddProduct}
                                     name='warranty'
-                                    render={({field: {onChange, onBlur, value}}) => (
+                                    render={() => (
                                         <div className={'control h-[98px]'}>
                                             <label htmlFor={'warranty'}
                                                    className={'label text-[12px] font-[500] text-neutrals-700 pb-[7px]'}>
@@ -181,7 +181,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                 <Controller
                                     control={controlAddProduct}
                                     name='unit'
-                                    render={({field: {onChange, onBlur, value}}) => (
+                                    render={() => (
                                         <div className={'control h-[98px]'}>
                                             <label htmlFor={'unit'}
                                                    className={'label text-[12px] font-[500] text-neutrals-700 pb-[7px]'}>

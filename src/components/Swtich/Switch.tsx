@@ -1,7 +1,7 @@
-interface SwitchProps {
-    className?: string;
-}
-const Switch = (props: SwitchProps) => {
+// interface SwitchProps {
+//     className?: string;
+// }
+const Switch = () => {
     return (
         <div id={'switch-root'}>
             <label className="switch">
