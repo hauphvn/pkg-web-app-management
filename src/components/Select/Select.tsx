@@ -25,7 +25,7 @@ const Select = (props: SelectProps) => {
                 maxTagCount={props?.maxTagCount}
                 allowClear
                 style={{ width: '100%' }}
-                className={`overflow-hidden rounded-[8px] ${props?.className}`}
+                className={` rounded-[8px] ${props?.className}`}
             />
         // </Space>
     );

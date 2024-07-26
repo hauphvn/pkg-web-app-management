@@ -239,6 +239,7 @@ const Product = () => {
             </div>
             <div className="table-container mt-[24px] pl-[24px] pr-[32px]">
                 <Table
+                    scroll={{x: '100%', y: '67vh'}}
                     pagination={{position: ["bottomCenter"]}}
                     columns={columns} dataSource={data}
                     showSorterTooltip={{
