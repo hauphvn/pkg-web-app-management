@@ -83,9 +83,24 @@ export default {
             },
             backgroundImage: {
                 'gradient-green': 'linear-gradient(to right, #198B4D, #05AA50)',
-                'gradient-green-disabled': 'linear-gradient(to right, #0E5932, #0E5932)',
+                'gradient-green-disabled': 'linear-gradient(to right, #E3FFF0, #E3FFF0)',
+                'gradient-green-press': 'linear-gradient(to right, #0E5932, #0E5932)',
             },
+            text: {
+                'gradient-text-green': 'linear-gradient(to right, #0A8040, #05AA50)',
+            },
+            borderImage:{
+                'gradient-green': 'linear-gradient(to right, #0A8040, #05AA50)',
+            }
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addUtilities }) {
+            addUtilities({
+                '.border-gradient-green': {
+                    borderImage: 'linear-gradient(to right, #0A8040, #05AA50) 1',
+                },
+            });
+        },
+    ],
 }

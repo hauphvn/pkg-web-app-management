@@ -13,6 +13,8 @@ import {SelectOption} from "../../components/Select/Select.tsx";
 import Input from "../../components/Input";
 import {Table, TableProps} from "antd";
 import ProductImg from '../../assets/imgs/productImg.png'
+import {useState} from "react";
+import AddNewProduct from "../../components/AddNewProduct";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -116,13 +118,16 @@ const columns: TableProps<DataType>['columns'] = [
                         </div>
                     </div>
                     <div className="actions-container flex gap-x-[12px] ">
-                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                        <div
+                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
                             <IconPen/>
                         </div>
-                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                        <div
+                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
                             <IconWarehouse/>
                         </div>
-                        <div className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
+                        <div
+                            className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
                             <IconRecycling/>
                         </div>
                     </div>
@@ -181,6 +186,16 @@ const data: DataType[] = [
 ];
 // end dummy data table
 const Product = () => {
+    const [showAddNew, setShowAddNew] = useState(false);
+
+    function preOnShowAddNew() {
+        setShowAddNew(true);
+    }
+
+    function preOnCloseAddNew() {
+        setShowAddNew(false);
+    }
+
     return (
         <div>
             <div
@@ -192,6 +207,7 @@ const Product = () => {
                         className={'h-[40px] shadow-button-1'}
                         name={'Nhập theo danh sách'}/>
                     <ButtonGradient
+                        onClick={preOnShowAddNew}
                         icon={<IconPlus/>}
                         className={'h-[40px] w-[162px] text-[16px]  px-[24px] gap-x-[14px]'}
                         name={'Thêm mới'}/>
@@ -230,6 +246,7 @@ const Product = () => {
                     }}
                 />
             </div>
+            <AddNewProduct show={showAddNew} onClose={preOnCloseAddNew}/>
         </div>
     );
 };

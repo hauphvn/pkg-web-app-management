@@ -1,6 +1,6 @@
 import { Select as SelectAnt } from 'antd';
 import {ReactNode} from "react";
-// import type { SelectProps as SelectAntProps } from 'antd';
+import {IconSelectArrowButton} from "../../assets/svgs/SVGIcon.tsx";
 
 export interface SelectOption {
     label: string,
@@ -20,12 +20,12 @@ const Select = (props: SelectProps) => {
         // <Space className={'w-full flex items-center'} direction="vertical">
             <SelectAnt
                 {...props}
-                suffixIcon={props?.suffixIcon}
+                suffixIcon={props?.suffixIcon ? props.suffixIcon : <IconSelectArrowButton/>}
                 mode="multiple"
                 maxTagCount={props?.maxTagCount}
                 allowClear
                 style={{ width: '100%' }}
-                className={`overflow-hidden border-neutrals-50 border rounded-[8px] ${props?.className}`}
+                className={`overflow-hidden rounded-[8px] ${props?.className}`}
             />
         // </Space>
     );
