@@ -12,8 +12,8 @@ const Input = (props: InputProps) => {
         <InputAnt
             {...props}
             className={`
-         box-border max-h-[50px] rounded-[8px] px-[20px] py-[14px] ${props?.warning ? 'border-semantics-red02' : 'border-none '} 
-           ${props?.className}`}
+         box-border max-h-[50px] px-[20px] py-[14px] ${props?.warning ? 'border-semantics-red02' : 'border-none '} 
+            ${props?.className}`}
         />
     );
 };

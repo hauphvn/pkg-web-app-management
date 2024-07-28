@@ -77,7 +77,7 @@ const Login = () => {
                                                     <Input
                                                         warning={!!errors.account?.message}
                                                         id={'account'}
-                                                        className={'bg-[#EBEBEF] h-[50px]'}
+                                                        className={'bg-neutrals-200 h-[50px]'}
                                                         placeholder={'Tài khoản của bạn'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -109,7 +109,7 @@ const Login = () => {
                                                         iconCloseEye={<CloseEye/>}
                                                         type={'password'}
                                                         id={'password'}
-                                                        className={'bg-[#EBEBEF] h-[50px]'}
+                                                        className={'bg-neutrals-200 h-[50px]'}
                                                         placeholder={'Mật khẩu của bạn'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}

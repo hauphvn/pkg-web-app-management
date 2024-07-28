@@ -7,7 +7,9 @@
     --color-brand02: theme('colors.brand02.DEFAULT');
     --color-neutrals-50: theme('colors.neutrals.50');
     --color-neutrals-100: theme('colors.neutrals.100');
+    --color-neutrals-200: theme('colors.neutrals.200');
     --color-neutrals-300: theme('colors.neutrals.300');
+    --color-neutrals-400: theme('colors.neutrals.400');
     --color-neutrals-900: theme('colors.neutrals.900');
     --color-semantics-grey01: theme('colors.semantics.grey01');
     --color-semantics-green02: theme('colors.semantics.green02');
@@ -191,12 +193,12 @@ td.ant-table-cell {
 /*end config border-radius using gradient color for item*/
 
 /*end custom css item*/
-#add-new-product-container .control-add-product .ant-select-selector{
+#add-new-product-container .control-add-product .ant-select-selector {
     border: none;
 }
 
 /*toggle button*/
-#switch-root .switch {
+.switch-root-medium .switch {
     position: relative;
     display: inline-block;
     width: 54px;
@@ -204,14 +206,14 @@ td.ant-table-cell {
 }
 
 /* Hide default HTML checkbox */
-#switch-root .switch input {
+.switch-root-medium .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
 /* The slider */
-#switch-root .slider {
+.switch-root-medium .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -219,47 +221,47 @@ td.ant-table-cell {
     right: 0;
     bottom: 0;
     background-color: var(--color-neutrals-100);
-    border: 1px solid var(--color-neutrals-300);
     -webkit-transition: .4s;
     transition: .4s;
 }
 
-#switch-root .slider:before {
+.switch-root-medium .slider:before {
     position: absolute;
     content: "";
     height: 22px;
     width: 22px;
     left: 4px;
-    bottom: 3px;
+    bottom: 4px;
     background-color: var(--color-neutrals-50);
     box-shadow: 0 3px 8px 0 var(--color-box-shadow);
     -webkit-transition: .4s;
     transition: .4s;
 }
-
-#switch-root input:checked + .slider {
+.switch-root-medium input:checked + .slider {
     background-color: var(--color-semantics-green02);
 }
 
-#switch-root input:focus + .slider {
+.switch-root-medium input:focus + .slider {
     box-shadow: 0 0 1px var(--color-border-gradient-from);
 }
 
-#switch-root input:checked + .slider:before {
+.switch-root-medium input:checked + .slider:before {
     -webkit-transform: translateX(22px);
     -ms-transform: translateX(22px);
     transform: translateX(22px);
 }
 
 /* Rounded sliders */
-#switch-root .slider.round {
+.switch-root-medium .slider.round {
     border-radius: 34px;
 }
 
-#switch-root .slider.round:before {
+.switch-root-medium .slider.round:before {
     border-radius: 50%;
 }
+
 /*end toggle button*/
+
 
 /*scroll color*/
 /* Add this to your CSS file */
@@ -282,7 +284,71 @@ td.ant-table-cell {
     background-color: #EBEBEF;
     border-radius: 6px;
 }
+
 /*scroll color*/
+/*switch small*/
+.switch-root-small .switch {
+    position: relative;
+    display: inline-block;
+    width: 47px;
+    height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch-root-small .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.switch-root-small .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-neutrals-400);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.switch-root-small .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--color-neutrals-50);
+    box-shadow: 0 3px 8px 0 var(--color-box-shadow);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.switch-root-small input:checked + .slider {
+    background-color: var(--color-border-gradient-from);
+}
+
+.switch-root-small input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-border-gradient-from);
+}
+
+.switch-root-small input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.switch-root-small .slider.round {
+    border-radius: 34px;
+}
+
+.switch-root-small .slider.round:before {
+    border-radius: 50%;
+}
+/*end switch small*/
 
 /*editor*/
 /*rsw-editor (root container)*/
@@ -291,18 +357,36 @@ td.ant-table-cell {
 /*rsw-btn*/
 /*rsw-separator*/
 /*rsw-dd (drop down list)*/
-#add-new-product-container .rsw-editor{
-   min-height: 70vh;
-}
-#add-new-product-container .rsw-toolbar{
-    background-color: white;
-    border-bottom: none;
-}
-#update-product-container .rsw-editor{
+#add-new-product-container .rsw-editor {
     min-height: 70vh;
 }
-#update-product-container .rsw-toolbar{
+
+#add-new-product-container .rsw-toolbar {
     background-color: white;
     border-bottom: none;
 }
+
+#update-product-container .rsw-editor {
+    min-height: 70vh;
+}
+
+#update-product-container .rsw-toolbar {
+    background-color: white;
+    border-bottom: none;
+}
+
+#filter-product-root .ant-slider-track,
+#filter-product-root .ant-slider-rail {
+    height: 2px;
+}
+
 /*editor*/
+
+
+/*button ant custom*/
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+    color: var(--color-semantics-grey01);
+    border-color: var(--color-neutrals-300);
+    background-color: var(--color-neutrals-200);
+}
+/*end button ant button*/

@@ -410,7 +410,7 @@ const IconInputSearch = () => {
        </svg>
    );
 }
-const IconFilter = () => {
+const IconFilter = (props: { isActive?: boolean }) => {
    return (
        <svg
            xmlns="http://www.w3.org/2000/svg"
@@ -419,7 +419,7 @@ const IconFilter = () => {
            fill="none"
        >
            <path
-               className={'stroke-semantics-grey01'}
+               className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
                strokeLinecap="round"
                strokeLinejoin="round"
                strokeMiterlimit={10}

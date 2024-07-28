@@ -17,6 +17,7 @@ import {useEffect, useState} from "react";
 import AddNewProduct from "../../components/AddNewProduct";
 import {IProduct} from "../../types";
 import UpdateProduct from "../../components/UpdateProduct";
+import FilterProduct from "../../components/FilterProduct";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -87,6 +88,7 @@ const data: DataType[] = [
 // end dummy data table
 const Product = () => {
     const [showAddNew, setShowAddNew] = useState(false);
+    const [showFilter, setShowFilter] = useState(false);
     const columns: TableProps<DataType>['columns'] = [
         {
             title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
@@ -258,10 +260,16 @@ const Product = () => {
                         suffix={<IconInputSearch/>}
                         className={'text-[12px] text-semantics-grey01 h-[40px] w-[230px] rounded-[8px] shadow-button-1 focus-within:shadow-button-1'}
                         placeholder={'Tìm kiếm sản phẩm'}/>
-                    <Button
-                        className={'text-semantics-grey01 text-[16px] h-[40px] shadow-button-1'}
-                        icon={<IconFilter/>}
-                        name={'Bộ lộc'}/>
+                   <div className={'relative'}>
+                       <Button
+                           onClick={() => setShowFilter(!showFilter)}
+                           className={'text-semantics-grey01 text-[16px] h-[40px] shadow-button-1'}
+                           icon={<IconFilter/>}
+                           name={'Bộ lộc'}/>
+                       <div className={'absolute top-[3rem] right-0 z-20'}>
+                           {showFilter && <FilterProduct/>}
+                       </div>
+                   </div>
                 </div>
             </div>
             <div className="table-container mt-[24px] pl-[24px] pr-[32px]">

@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
         <ButtonAnt
             {...props}
             className={`text-greenFrom font-[500] bg-neutrals-50
-        rounded-[8px] px-[26px]  border-neutrals-300 border
+        rounded-[8px] px-[26px]  border-neutrals-300 border 
         ${props.className}`}
            >
             {props.name}

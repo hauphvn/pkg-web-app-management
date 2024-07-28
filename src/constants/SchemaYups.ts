@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import {stringRequired} from "./YupValidation.ts";
+import {stringNormal, stringRequired} from "./YupValidation.ts";
 
 export const formLoginSchema = () => {
     return yup.object().shape({
@@ -11,18 +11,18 @@ export const formLoginSchema = () => {
 export const formAddEditProduct = () => {
     return yup.object().shape({
         productName: stringRequired,
-        store: stringRequired,
-        warranty: stringRequired,
-        unit: stringRequired,
-        importPrice: stringRequired,
-        salePrice: stringRequired,
-        discount: stringRequired,
-        priceAfterDiscount: stringRequired,
-        quantity: stringRequired,
-        weight: stringRequired,
-        length: stringRequired,
-        width: stringRequired,
-        height: stringRequired,
+        store: stringNormal,
+        warranty: stringNormal,
+        unit: stringNormal,
+        importPrice: stringNormal,
+        salePrice: stringNormal,
+        discount: stringNormal,
+        priceAfterDiscount:stringNormal,
+        quantity: stringNormal,
+        weight: stringNormal,
+        length: stringNormal,
+        width: stringNormal,
+        height: stringNormal,
         isContactPrice: yup.boolean(),
         isOnlineSale: yup.boolean(),
     })

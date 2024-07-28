@@ -33,7 +33,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
     }
 
     const {
-        formState: {errors},
+        formState: {errors, isDirty, isValid},
         control: controlAddProduct,
     } = useForm({
         resolver: yupResolver(formAddEditProduct()),
@@ -96,7 +96,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                             <Input
                                                 warning={!!errors.productName?.message}
                                                 id={'account'}
-                                                className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                 placeholder={'Nhập tên sản phẩm'}
                                                 onChange={onChange}
                                                 onBlur={onBlur}
@@ -228,7 +228,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.importPrice?.message}
                                                         id={'account'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập giá nhập'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -260,7 +260,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.salePrice?.message}
                                                         id={'account'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập giá bán'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -294,7 +294,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.discount?.message}
                                                         id={'discount'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Giảm giá'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -326,7 +326,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.salePrice?.message}
                                                         id={'priceAfterDiscount'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Giá sau giảm'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -361,7 +361,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.quantity?.message}
                                                         id={'quantity'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập số lượng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -393,7 +393,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.weight?.message}
                                                         id={'account'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập khối lượng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -427,7 +427,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.importPrice?.message}
                                                         id={'length'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập chiều dài'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -459,7 +459,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.width?.message}
                                                         id={'width'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập chiều rộng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -491,7 +491,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                                                     <Input
                                                         warning={!!errors.salePrice?.message}
                                                         id={'height'}
-                                                        className={'bg-[#EBEBEF] h-[50px] pl-[11px]'}
+                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
                                                         placeholder={'Nhập chiều cao'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -545,7 +545,7 @@ const AddNewProduct = (props: AddNewProductProps) => {
                 </div>
                 <div className="submit-container flex gap-x-[8px] pt-[5px] ">
                     <Button onClick={props.onClose} className={'w-[210px] h-[53px]'} name={'Hủy'}/>
-                    <ButtonGradient className={'w-[210px] h-[53px]'} disabled name={'Thêm sản phẩm'}/>
+                    <ButtonGradient className={'w-[210px] h-[53px]'} disabled={!(isDirty && isValid)} name={'Thêm sản phẩm'}/>
                 </div>
             </div>
         </Drawer>
