@@ -17,3 +17,20 @@ export interface IProduct {
     isContactPrice?: boolean;
     isOnlineSale?: boolean;
 }
+export interface IResProduct {
+    key: string;
+    productID: string;
+    productName: string;
+    image: string;
+    productCode: string;
+    amount: string;
+    price: string;
+}
+
+export interface IResProductEditSelected{
+    productID: string;
+    productName: string;
+    productCode: string;
+    actionType: 'update' | 'delete' |'unknown';
+    salePrice: string;
+}

@@ -15,9 +15,10 @@ import {Table, TableProps} from "antd";
 import ProductImg from '../../assets/imgs/productImg.png'
 import {useEffect, useState} from "react";
 import AddNewProduct from "../../components/AddNewProduct";
-import {IProduct} from "../../types";
+import {IResProduct, IResProductEditSelected} from "../../types";
 import UpdateProduct from "../../components/UpdateProduct";
 import FilterProduct from "../../components/FilterProduct";
+import ErrorModal from "../../components/ErrorModal/ErrorModal.tsx";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -28,21 +29,11 @@ const categories: SelectOption[] = [
 ]
 
 // dummy data table
-interface DataType {
-    key: string;
-    image: string;
-    productID: string;
-    productName: string;
-    productCode: string;
-    amount: string;
-    price: string;
-}
-
-const data: DataType[] = [
+const dataDummy: IResProduct[] = [
     {
         key: '1',
         productID: '1',
-        productName: 'Cỏ 4 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        productName: 'Cây Tài Lộc Mẫu 2023 Japper Đỏ',
         image: ProductImg,
         productCode: 'PK00000001',
         amount: '1030',
@@ -51,7 +42,7 @@ const data: DataType[] = [
     {
         key: '2',
         productID: '2',
-        productName: 'Cỏ 5 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        productName: 'Khoá Học Kiến Thức',
         image: ProductImg,
         productCode: 'PK00000002',
         amount: '1200',
@@ -60,7 +51,7 @@ const data: DataType[] = [
     {
         key: '3',
         productID: '3',
-        productName: 'Cỏ 6 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        productName: 'Vòng Trầm 8 Ly Mix Kim Tiền Ng...',
         image: ProductImg,
         productCode: 'PK00000003',
         amount: '1010',
@@ -78,18 +69,39 @@ const data: DataType[] = [
     {
         key: '5',
         productID: '5',
-        productName: 'Cỏ 4 Lá Mix Ngũ Điếu Và Túi Tiền Vàng 10k ',
+        productName: 'Vòng Trầm Mix Thánh Giá (2 Vòng)',
         image: ProductImg,
         productCode: 'PK00000005',
         amount: '100',
         price: '1,000,000,000',
     }
 ];
+
 // end dummy data table
+interface ISearchParam {
+    productName: string,
+    page?: number,
+}
+
 const Product = () => {
     const [showAddNew, setShowAddNew] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
-    const columns: TableProps<DataType>['columns'] = [
+    const [delayInputSearch, setDelayInputSearch] = useState('');
+    const [paramSearch, setParamSearch] = useState<ISearchParam>({
+        productName: '',
+    });
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [products, setProducts] = useState<IResProduct[]>(dataDummy)
+    const onResetProductEdit = () => {
+        setProductEdit({
+            productID: '',
+            salePrice: '',
+            productName: '',
+            productCode: '',
+            actionType: 'unknown'
+        })
+    }
+    const columns: TableProps<IResProduct>['columns'] = [
         {
             title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
             dataIndex: 'image',
@@ -154,7 +166,7 @@ const Product = () => {
             dataIndex: 'action',
             key: 'action',
             align: 'center',
-            render: (_, {productID, productName, price,productCode}) => {
+            render: (_, {productID, productName, price, productCode}) => {
                 return (
                     <div className={' flex flex-col gap-y-[10px] w-full justify-center items-center'}>
                         <div className="print-container gap-x-[12px] flex items-center">
@@ -173,7 +185,13 @@ const Product = () => {
                         </div>
                         <div className="actions-container flex gap-x-[12px] ">
                             <div
-                                onClick={() => onEditProduct({productID, productName, price, productCode})}
+                                onClick={() => onEditProduct({
+                                    productID,
+                                    productName,
+                                    price,
+                                    productCode,
+                                    actionType: 'update'
+                                })}
                                 className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
                                 <IconPen/>
                             </div>
@@ -182,6 +200,13 @@ const Product = () => {
                                 <IconWarehouse/>
                             </div>
                             <div
+                                onClick={() => onEditProduct({
+                                    productID,
+                                    productName,
+                                    price,
+                                    productCode,
+                                    actionType: 'delete'
+                                })}
                                 className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
                                 <IconRecycling/>
                             </div>
@@ -191,26 +216,50 @@ const Product = () => {
             }
         },
     ];
-    const [productEdit, setProductEdit] = useState<IProduct>({
+    const [productEdit, setProductEdit] = useState<IResProductEditSelected>({
         productID: '',
         salePrice: '',
-        productName: ''
+        productName: '',
+        productCode: '',
+        actionType: 'unknown'
     })
     const [showUpdate, setShowUpdate] = useState(false);
     useEffect(() => {
-        console.log(productEdit)
         if (productEdit?.productID) {
-            setShowUpdate(true);
+            if (productEdit?.actionType === 'update') {
+                setShowUpdate(true);
+            } else if (productEdit?.actionType === 'delete') {
+                setShowModalDelete(true);
+            }
         }
     }, [productEdit?.productID])
+    useEffect(() => {
+        setTimeout(() => {
+            setParamSearch(pre => ({
+                ...pre,
+                productName: delayInputSearch
+            }));
+        }, 300);
+    }, [delayInputSearch]);
+    useEffect(() => {
+        const searchProducts = dataDummy.filter((fil: IResProduct) => fil.productName.toLowerCase().includes(paramSearch.productName?.toLowerCase())).map(product => (product));
+        setProducts(searchProducts);
+    }, [paramSearch?.productName]);
 
-    function onEditProduct(param: { productID: string; price: string; productName: string, productCode: string }) {
+    function onEditProduct(param: {
+        productID: string;
+        price: string;
+        productName: string,
+        productCode: string,
+        actionType: 'update' | 'delete'
+    }) {
         setProductEdit({
             productID: param.productID,
             salePrice: param.price,
             productName: param.productName,
-            productCode: param.productCode
-        })
+            productCode: param.productCode,
+            actionType: param.actionType
+        });
     }
 
     function preOnShowAddNew() {
@@ -222,7 +271,23 @@ const Product = () => {
     }
 
     function preOnCloseUpdate() {
+        onResetProductEdit();
         setShowUpdate(false);
+    }
+
+    function preHandlerSearch(value: string) {
+        setDelayInputSearch(value);
+    }
+
+    function onHandleDelete() {
+       const newProducts = products.filter(product => product.productID !== productEdit.productID);
+         setProducts(newProducts);
+         setShowModalDelete(false);
+    }
+
+    function preOnCloseDelete() {
+        onResetProductEdit();
+        setShowModalDelete(false);
     }
 
     return (
@@ -257,26 +322,27 @@ const Product = () => {
                 </div>
                 <div className={'flex items-center gap-x-[20px]'}>
                     <Input
+                        onChange={(e) => preHandlerSearch(e?.target?.value)}
                         suffix={<IconInputSearch/>}
                         className={'text-[12px] text-semantics-grey01 h-[40px] w-[230px] rounded-[8px] shadow-button-1 focus-within:shadow-button-1'}
                         placeholder={'Tìm kiếm sản phẩm'}/>
-                   <div className={'relative'}>
-                       <Button
-                           onClick={() => setShowFilter(!showFilter)}
-                           className={'text-semantics-grey01 text-[16px] h-[40px] shadow-button-1'}
-                           icon={<IconFilter/>}
-                           name={'Bộ lộc'}/>
-                       <div className={'absolute top-[3rem] right-0 z-20'}>
-                           {showFilter && <FilterProduct/>}
-                       </div>
-                   </div>
+                    <div className={'relative'}>
+                        <Button
+                            onClick={() => setShowFilter(!showFilter)}
+                            className={'text-semantics-grey01 text-[16px] h-[40px] shadow-button-1'}
+                            icon={<IconFilter/>}
+                            name={'Bộ lộc'}/>
+                        <div className={'absolute top-[3rem] right-0 z-20'}>
+                            {showFilter && <FilterProduct/>}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="table-container mt-[24px] pl-[24px] pr-[32px]">
                 <Table
                     scroll={{x: '100%', y: '67vh'}}
                     pagination={{position: ["bottomCenter"]}}
-                    columns={columns} dataSource={data}
+                    columns={columns} dataSource={products}
                     showSorterTooltip={{
                         title: 'Click để sắp xếp'
                     }}
@@ -284,6 +350,16 @@ const Product = () => {
             </div>
             <AddNewProduct show={showAddNew} onClose={preOnCloseAddNew}/>
             <UpdateProduct show={showUpdate} onClose={preOnCloseUpdate} productEdit={productEdit}/>
+            <ErrorModal
+                title={<div className={'text-semantics-grey01'}>Xoá sản phẩm</div>}
+                onCancel={preOnCloseDelete}
+                onOk={onHandleDelete} open={showModalDelete}>
+                <div className={'p-6'}>
+                    <p className={'text-semantics-grey02'}>Bạn có chắc chắn muốn <span className={'text-semantics-red02'}>xoá</span> sản phẩm {' '}
+                        <span className={'font-bold'}>{productEdit.productName}</span>
+                        {' '}này không?</p>
+                </div>
+            </ErrorModal>
         </div>
     );
 };
