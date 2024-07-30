@@ -22,6 +22,8 @@ import FilterProduct from "../../components/FilterProduct";
 import ErrorModal from "../../components/ErrorModal/ErrorModal.tsx";
 import {useTheme} from "../../context/ThemeContext.tsx";
 import ImportWarehouseProduct from "../../components/ImportWarehouseProduct";
+import CreateItemProductPrinter from "../../components/CreateItemProductPrinter";
+import {FormatCurrency} from "../../constants";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -87,13 +89,17 @@ interface ISearchParam {
 }
 
 const Product = () => {
-    const{isDarkMode} = useTheme();
+    const {isDarkMode} = useTheme();
     const [showAddNew, setShowAddNew] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const [delayInputSearch, setDelayInputSearch] = useState('');
+    const [valuesPrinter, setValuesPrinter] = useState<{
+        [key: string]: { goldRate: string, goldRateFormat: string, laborCost: string, laborCostFormat: string }
+    }>({});
     const [paramSearch, setParamSearch] = useState<ISearchParam>({
         productName: '',
     });
+    const [showPrinterPDF, setShowPrinterPDF] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [products, setProducts] = useState<IResProduct[]>(dataDummy)
     const onResetProductEdit = () => {
@@ -106,6 +112,7 @@ const Product = () => {
             actionType: 'unknown'
         })
     }
+
     const columns: TableProps<IResProduct>['columns'] = [
         {
             title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} w-[116px]`}>Hình ảnh</div>),
@@ -132,8 +139,10 @@ const Product = () => {
                         <div className={' font-[600] text-[20px]'}>
                             {productName}
                         </div>
-                        <div className={'text-[14px]'}><span className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Giá bán:</span> <span
-                            className={'text-accent-a01'}>{price} VND</span></div>
+                        <div className={'text-[14px]'}><span
+                            className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Giá bán:</span>
+                            <span
+                                className={'text-accent-a01'}>{price} VND</span></div>
                     </div>
                 )
             }
@@ -177,13 +186,42 @@ const Product = () => {
                         <div className="print-container gap-x-[12px] flex items-center">
                             <div
                                 className={`${isDarkMode ? 'border-darkGrey-3838 bg-darkGrey-3333' : 'border-neutrals-500'} print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] rounded-[8px]`}>
-                                <input className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[50px] outline-0 text-[12px] p-0 m-0 leading-none`}
-                                       placeholder={'TL Vàng'} type="text"/>
+                                <input
+                                    value={valuesPrinter[productID]?.goldRate || ''}
+                                    onChange={(e) => setValuesPrinter(pre => ({
+                                        ...pre,
+                                        [productID]: {
+                                            ...pre[productID],
+                                            goldRate: e.target.value,
+                                            goldRateFormat: e.target.value + '%'
+                                        }
+                                    }))}
+                                    className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[50px] outline-0 text-[12px] p-0 m-0 leading-none`}
+                                    placeholder={'TL Vàng'} type="text"/>
                                 <div className={`border-semantics-grey01 border-l-[1px] h-[14px]`}></div>
-                                <input className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[84px] outline-0 text-[12px] p-0 m-0 leading-none`}
-                                       placeholder={'Tiền công'} type="text"/>
+                                <input
+                                    value={valuesPrinter[productID]?.laborCost || ''}
+                                    onChange={(e) => setValuesPrinter(pre => ({
+                                        ...pre,
+                                        [productID]: {
+                                            ...pre[productID],
+                                            laborCost: e.target.value,
+                                            laborCostFormat: (!isNaN(+e?.target?.value) && e?.target?.value) ? FormatCurrency(+e?.target?.value) : ''
+                                        }
+                                    }))}
+                                    className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[84px] outline-0 text-[12px] p-0 m-0 leading-none`}
+                                    placeholder={'Tiền công'} type="text"/>
                             </div>
                             <div
+                                onClick={() => onEditProduct({
+                                    productID,
+                                    productName,
+                                    price,
+                                    productCode,
+                                    quantity: amount,
+                                    actionType: 'printer'
+                                })}
+                                // onClick={() => prePrintItem(productName, productID)}
                                 className={`${isDarkMode ? 'bg-darkGrey-2E2E' : ''} printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]`}>
                                 <IconPrinter isDarkMode={isDarkMode}/>
                             </div>
@@ -199,7 +237,7 @@ const Product = () => {
                                     actionType: 'update'
                                 })}
                                 className={` ${isDarkMode ? 'bg-darkGrey-2E2E' : ''} icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] `}>
-                                <IconPen  isDarkMode={isDarkMode}/>
+                                <IconPen isDarkMode={isDarkMode}/>
                             </div>
                             <div
                                 onClick={() => onEditProduct({
@@ -247,9 +285,10 @@ const Product = () => {
                 setShowUpdate(true);
             } else if (productEdit?.actionType === 'delete') {
                 setShowModalDelete(true);
-            }
-            else if (productEdit?.actionType === 'import-warehouse') {
+            } else if (productEdit?.actionType === 'import-warehouse') {
                 setShowImportWarehouseProduct(true);
+            } else if (productEdit?.actionType === 'printer') {
+                setShowPrinterPDF(true);
             }
         }
     }, [productEdit?.productID])
@@ -272,7 +311,7 @@ const Product = () => {
         productName: string,
         productCode: string,
         quantity: string,
-        actionType: 'update' | 'delete' | 'import-warehouse'
+        actionType: 'update' | 'delete' | 'import-warehouse' | 'printer'
     }) {
         setProductEdit({
             productID: param.productID,
@@ -296,6 +335,7 @@ const Product = () => {
         onResetProductEdit();
         setShowUpdate(false);
     }
+
     function preOnCloseImportWarehouseProduct() {
         onResetProductEdit();
         setShowImportWarehouseProduct(false);
@@ -306,9 +346,9 @@ const Product = () => {
     }
 
     function onHandleDelete() {
-       const newProducts = products.filter(product => product.productID !== productEdit.productID);
-         setProducts(newProducts);
-         setShowModalDelete(false);
+        const newProducts = products.filter(product => product.productID !== productEdit.productID);
+        setProducts(newProducts);
+        setShowModalDelete(false);
     }
 
     function preOnCloseDelete() {
@@ -329,11 +369,12 @@ const Product = () => {
                     <ButtonGradient
                         onClick={preOnShowAddNew}
                         icon={<IconPlus/>}
-                        className={`${isDarkMode ? 'border-darkGrey-3838-important border' : ''} h-[40px] w-[162px] text-[16px]  px-[24px] gap-x-[14px]`}
+                        className={`${isDarkMode ? 'border-darkGrey-3838-important border' : ''} h-[40px] w-[165px] text-[16px]  px-[24px] gap-x-[14px]`}
                         name={'Thêm mới'}/>
                 </div>
             </div>
-            <div className={`${isDarkMode ? 'text-neutrals-400' : 'text-neutrals-700'} action-filter-container h-[88px] px-[24px] py-[32px] flex  justify-between`}>
+            <div
+                className={`${isDarkMode ? 'text-neutrals-400' : 'text-neutrals-700'} action-filter-container h-[88px] px-[24px] py-[32px] flex  justify-between`}>
                 <div className={'flex gap-x-[20px] w-[325px] items-center'}>
                     <label className={' text-[14px]'} htmlFor="categories">Danh sách:</label>
                     <div className={' w-[230px] flex items-center'}>
@@ -341,7 +382,7 @@ const Product = () => {
                             isDarkMode={isDarkMode}
                             maxTagCount={1}
                             suffixIcon={<IconSelectArrowButton/>}
-                            className={`custom-select-dropdown ${isDarkMode? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : ''} h-[38px] text-[12px]`}
+                            className={`custom-select-dropdown ${isDarkMode ? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : ''} h-[38px] text-[12px]`}
                             id={'categories'}
                             options={categories}
                             placeholder={'Tất cả'}/>
@@ -378,17 +419,29 @@ const Product = () => {
             </div>
             <AddNewProduct show={showAddNew} onClose={preOnCloseAddNew}/>
             <UpdateProduct show={showUpdate} onClose={preOnCloseUpdate} productEdit={productEdit}/>
-            <ImportWarehouseProduct show={showImportWarehouseProduct} onClose={preOnCloseImportWarehouseProduct} productEdit={productEdit}/>
+            <ImportWarehouseProduct show={showImportWarehouseProduct} onClose={preOnCloseImportWarehouseProduct}
+                                    productEdit={productEdit}/>
             <ErrorModal
                 title={<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Xoá sản phẩm</div>}
                 onCancel={preOnCloseDelete}
                 onOk={onHandleDelete} open={showModalDelete}>
                 <div className={'p-6'}>
-                    <p className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Bạn có chắc chắn muốn <span className={'text-semantics-red02'}>xoá</span> sản phẩm {' '}
+                    <p className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Bạn có chắc chắn
+                        muốn <span className={'text-semantics-red02'}>xoá</span> sản phẩm {' '}
                         <span className={'font-bold'}>{productEdit.productName}</span>
                         {' '}này không?</p>
                 </div>
             </ErrorModal>
+            <CreateItemProductPrinter
+                open={showPrinterPDF}
+                onClose={() => {
+                    onResetProductEdit();
+                    setShowPrinterPDF(false)
+                }}
+                productName={productEdit.productName}
+                goldRate={valuesPrinter[productEdit.productID]?.goldRateFormat}
+                laborCost={valuesPrinter[productEdit.productID]?.laborCostFormat}
+            />
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import './App.css'
+import './assets/fonts/fonts.css';
 import {Route, Routes} from "react-router-dom";
 import {ROUTES_PATH} from "./constants";
 import Login from "./pages/Login";

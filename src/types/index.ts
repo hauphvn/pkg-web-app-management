@@ -33,6 +33,6 @@ export interface IResProductEditSelected {
     productName: string;
     productCode: string;
     quantity: string;
-    actionType: 'update' | 'delete' | 'import-warehouse' | 'unknown';
+    actionType: 'update' | 'delete' | 'import-warehouse' |'printer' | 'unknown';
     salePrice: string;
 }

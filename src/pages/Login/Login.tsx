@@ -135,6 +135,7 @@ const Login = () => {
                                 />
                                 <div className={'flex gap-x-[10px] items-center mb-[32px] mt-[18px]'}>
                                     <Switch
+                                        id="sessionLogin"
                                         className={`${isDarkMode ? 'bg-neutrals-800 ' : 'bg-neutrals-200'} `}
                                         defaultValue={saveSessionLogin} onChange={onSaveSessionLogin}/>
                                     <label htmlFor="sessionLogin" className={`${isDarkMode ? 'text-semantics-grey03' : ''}`}>Lưu đăng nhập</label>
