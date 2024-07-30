@@ -1,6 +1,7 @@
 import { Select as SelectAnt } from 'antd';
 import {ReactNode} from "react";
 import {IconSelectArrowButton} from "../../assets/svgs/SVGIcon.tsx";
+import './selectCustom.css';
 
 export interface SelectOption {
     label: string,
@@ -12,20 +13,33 @@ interface SelectProps{
     options: SelectOption[],
     id?:string
     suffixIcon?: ReactNode,
-    maxTagCount?: number
+    maxTagCount?: number,
+    isDarkMode?: boolean,
 }
 // const options: SelectAntProps['options'] = [];
 const Select = (props: SelectProps) => {
+    const {
+        options,
+        placeholder,
+        suffixIcon,
+        maxTagCount,
+        isDarkMode,
+        className,
+        
+    } = props;
     return (
         // <Space className={'w-full flex items-center'} direction="vertical">
             <SelectAnt
-                {...props}
-                suffixIcon={props?.suffixIcon ? props.suffixIcon : <IconSelectArrowButton/>}
+                suffixIcon={suffixIcon ? props.suffixIcon : <IconSelectArrowButton/>}
                 mode="multiple"
-                maxTagCount={props?.maxTagCount}
+                maxTagCount={maxTagCount}
                 allowClear
+                placeholder={placeholder}
+                options={options}
                 style={{ width: '100%' }}
-                className={` rounded-[8px] ${props?.className}`}
+                className={` rounded-[8px] ${className}`}
+                getPopupContainer={trigger => trigger.parentElement}
+                popupClassName={isDarkMode ? 'select-dark-content' : ''}
             />
         // </Space>
     );

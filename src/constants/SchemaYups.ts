@@ -27,6 +27,18 @@ export const formAddEditProduct = () => {
         isOnlineSale: yup.boolean(),
     })
 }
+export const formImportWarehouseProduct = () => {
+    return yup.object().shape({
+        productName: stringRequired,
+       remainingQuantity: stringNormal,
+        additionalQuantity: stringNormal,
+    })
+}
+export const formImportWarehouseProductDefault ={
+    productName: '',
+    remainingQuantity: '',
+    additionalQuantity: '',
+}
 export const formAddEditProductDefault = {
     productName: '',
     store: '',

@@ -1,57 +1,57 @@
-const Plus = () => {
+const Plus = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                stroke="#FCFCFD" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                className={`${props?.isDarkMode ? 'stroke-neutrals-50' : 'stroke-neutrals-50'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
-            <path d="M12 7.45459V16.5455" stroke="#FCFCFD" strokeWidth="1.5" strokeMiterlimit="10"
+            <path d="M12 7.45459V16.5455" className={`${props?.isDarkMode ? 'stroke-neutrals-50' : 'stroke-neutrals-50'}`} strokeWidth="1.5" strokeMiterlimit="10"
                   strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16.5455 12H7.45459" stroke="#FCFCFD" strokeWidth="1.5" strokeMiterlimit="10"
+            <path d="M16.5455 12H7.45459" className={`${props?.isDarkMode ? 'stroke-neutrals-50' : 'stroke-neutrals-50'}`} strokeWidth="1.5" strokeMiterlimit="10"
                   strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
 
     );
 };
-const OpenEye = () => {
+const OpenEye = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg className={'hover:cursor-pointer'} width="24" height="24" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z"
-                className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
                 d="M12 4.5C19.5 4.5 22.5 12 22.5 12C22.5 12 19.5 19.5 12 19.5C4.5 19.5 1.5 12 1.5 12C1.5 12 4.5 4.5 12 4.5Z"
-                className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
         </svg>
 
 
     );
 };
-const CloseEye = () => {
+const CloseEye = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg className={'hover:cursor-pointer'} width="24" height="24" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_804_9279)">
                 <path
                     d="M8.81775 15.1823C8.00325 14.3678 7.5 13.2427 7.5 12C7.5 9.5145 9.5145 7.5 12 7.5C13.2427 7.5 14.3678 8.004 15.1823 8.81775"
-                    className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                    className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                     strokeLinejoin="round"/>
                 <path
                     d="M16.4929 11.7502C16.4974 11.8327 16.4997 11.916 16.4997 12C16.4997 14.4855 14.4852 16.5 11.9997 16.5C11.9134 16.5 11.8279 16.4977 11.7432 16.4925"
-                    className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                    className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                     strokeLinejoin="round"/>
                 <path
                     d="M6.2415 17.7607C2.91825 15.5452 1.5 12 1.5 12C1.5 12 4.5 4.5 12 4.5C14.3438 4.5 16.248 5.23275 17.7585 6.23925"
-                    className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                    className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                     strokeLinejoin="round"/>
                 <path
                     d="M20.0295 8.21313C21.7402 10.1001 22.5 11.9999 22.5 11.9999C22.5 11.9999 19.5 19.4999 12 19.4999C10.9597 19.4999 10.0065 19.3559 9.13574 19.1076"
-                    className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                    className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                     strokeLinejoin="round"/>
-                <path d="M1.5 22.5L22.5 1.5" className={'stroke-neutrals-500'} strokeWidth="1.5" strokeMiterlimit="10"
+                <path d="M1.5 22.5L22.5 1.5" className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`} strokeWidth="1.5" strokeMiterlimit="10"
                       strokeLinecap="round" strokeLinejoin="round"/>
             </g>
             <defs>
@@ -92,40 +92,40 @@ const AvatarDefault = () => {
     );
 };
 
-const IconManageMenu = (props: { isActive?: boolean }) => {
+const IconManageMenu = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M8 3H4C3.44772 3 3 3.44772 3 4V8C3 8.55228 3.44772 9 4 9H8C8.55228 9 9 8.55228 9 8V4C9 3.44772 8.55228 3 8 3Z"
                 strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M14 4H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M14 8H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M8 15H4C3.44772 15 3 15.4477 3 16V20C3 20.5523 3.44772 21 4 21H8C8.55228 21 9 20.5523 9 20V16C9 15.4477 8.55228 15 8 15Z"
                 strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M14 16H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M14 20H21" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                 strokeLinejoin="round"/>
         </svg>
 
     );
 }
-const IconLogout = (props: { isActive?: boolean }) => {
+const IconLogout = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'} hover:stroke-primary`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : 'stroke-neutrals-700'} hover:stroke-primary`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -143,7 +143,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
                 d="m18.5 6 4 4-4 4M14 14v3H9"
             />
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'} hover:stroke-primary`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : 'stroke-neutrals-700'} hover:stroke-primary`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -154,7 +154,7 @@ const IconLogout = (props: { isActive?: boolean }) => {
 
     );
 }
-const IconCartMenu = (props: { isActive?: boolean }) => {
+const IconCartMenu = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +164,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -172,7 +172,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
                 d="M8 13v4M12 13v4M16 13v4M3.51 12H3.5l.802 7.221A2 2 0 0 0 6.29 21h11.42a2 2 0 0 0 1.988-1.779L20.5 12h-.01M1 8h22M8.75 1.5 5 8h1"
             />
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -182,7 +182,7 @@ const IconCartMenu = (props: { isActive?: boolean }) => {
         </svg>
     )
 }
-const IconArticleMenu = (props: { isActive?: boolean }) => {
+const IconArticleMenu = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +192,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -200,7 +200,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
                 d="M9 1.5v3.75A2.25 2.25 0 0 1 6.75 7.5H3"
             />
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -210,7 +210,7 @@ const IconArticleMenu = (props: { isActive?: boolean }) => {
         </svg>
     )
 }
-const IconLightTheme = (props: { isActive?: boolean }) => {
+const IconLightTheme = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +225,7 @@ const IconLightTheme = (props: { isActive?: boolean }) => {
         </svg>
     )
 }
-const IconDarkTheme = (props: { isActive?: boolean }) => {
+const IconDarkTheme = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +240,7 @@ const IconDarkTheme = (props: { isActive?: boolean }) => {
         </svg>
     )
 }
-const IconStoreMenu = (props: { isActive?: boolean }) => {
+const IconStoreMenu = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +250,7 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
 
         >
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -258,7 +258,7 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
                 d="M9.75 21.75v-6h4.5v6"
             />
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -268,11 +268,11 @@ const IconStoreMenu = (props: { isActive?: boolean }) => {
         </svg>
     )
 }
-const IconArrowButton = (props: { isActive?: boolean }) => {
+const IconArrowButton = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
                 d="M1.5 5.25L9 12.75L16.5 5.25" strokeWidth="1.7" strokeMiterlimit="10"
                 strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -280,7 +280,7 @@ const IconArrowButton = (props: { isActive?: boolean }) => {
     );
 }
 
-const IconArrowRight = (props: { isActive?: boolean }) => {
+const IconArrowRight = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +289,7 @@ const IconArrowRight = (props: { isActive?: boolean }) => {
             fill="none"
         >
             <path
-                className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-[#7E808A]'}`}
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : 'stroke-[#7E808A]'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
@@ -314,47 +314,47 @@ const IconLineSubMenu = () => {
     );
 }
 const IconPlus = ({classNamePath = ''}) => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={24}
-           height={24}
-           fill="none"
-       >
-           <path
-               className={`${classNamePath ? classNamePath : ' stroke-neutrals-50'}`}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               strokeWidth={1.5}
-               d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10ZM12 7.455v9.09M16.546 12H7.455"
-           />
-       </svg>
-   );
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={`${classNamePath ? classNamePath : ' stroke-neutrals-50'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10ZM12 7.455v9.09M16.546 12H7.455"
+            />
+        </svg>
+    );
 }
-const IconRemove = () => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={18}
-           height={18}
-           fill="none"
-       >
-           <path
-               className={'fill-neutrals-300'}
-               d="M9 16.875a7.875 7.875 0 1 0 0-15.75 7.875 7.875 0 0 0 0 15.75Z"
-           />
-           <path
-               className={'stroke-semantics-grey01'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               d="m11.813 6.188-5.626 5.625M11.813 11.813 6.186 6.186"
-           />
-       </svg>
-   );
+const IconRemove = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={18}
+            height={18}
+            fill="none"
+        >
+            <path
+                className={'fill-neutrals-300'}
+                d="M9 16.875a7.875 7.875 0 1 0 0-15.75 7.875 7.875 0 0 0 0 15.75Z"
+            />
+            <path
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                d="m11.813 6.188-5.626 5.625M11.813 11.813 6.186 6.186"
+            />
+        </svg>
+    );
 }
-const IconSelectArrowButton = () => {
+const IconSelectArrowButton = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -363,35 +363,16 @@ const IconSelectArrowButton = () => {
             fill="none"
         >
             <path
-                className={'stroke-semantics-grey01'}
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}
                 d="m1 3.5 5 5 5-5"
             />
-       </svg>
-   );
+        </svg>
+    );
 }
-const IconSelectArrowLarge = () => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={24}
-           height={24}
-           fill="none"
-       >
-           <path
-              className={'stroke-neutrals-500'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               strokeWidth={1.5}
-               d="m2 7 10 10L22 7"
-           />
-       </svg>
-   );
-}
-const IconInputSearch = () => {
+const IconSelectArrowLarge = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -400,94 +381,17 @@ const IconInputSearch = () => {
             fill="none"
         >
             <path
-                className={'stroke-semantics-grey01'}
+                className={`${props?.isDarkMode ? 'stroke-neutrals-500' : 'stroke-neutrals-500'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-               strokeMiterlimit={10}
-               strokeWidth={1.5}
-               d="m22 22-6.343-6.343M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-           />
-       </svg>
-   );
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="m2 7 10 10L22 7"
+            />
+        </svg>
+    );
 }
-const IconFilter = (props: { isActive?: boolean }) => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={24}
-           height={24}
-           fill="none"
-       >
-           <path
-               className={`${props?.isActive ? 'stroke-semantics-green01' : 'stroke-semantics-grey01'}`}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               strokeWidth={1.5}
-               d="m22 5-8 8v8l-4 2V13L2 5V2h20v3Z"
-           />
-       </svg>
-   );
-}
-const IconPen = () => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={24}
-           height={24}
-           fill="none"
-       >
-           <path
-              className={'stroke-brand01'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               strokeWidth={1.5}
-               d="M2.25 21.75h19.5M8.598 16.902l-5.25 1.5 1.5-5.25L14.973 3.027a2.651 2.651 0 1 1 3.75 3.75L8.598 16.902ZM13.5 4.5l3.75 3.75"
-           />
-       </svg>
-   );
-}
-const IconWarehouse = () => {
-   return (
-       <svg
-           xmlns="http://www.w3.org/2000/svg"
-           width={24}
-           height={24}
-           fill="none"
-       >
-           <path
-               className={'stroke-semantics-yellow02'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               d="M1.5 4.875 6.75 7.5 12 4.875M6.75 7.5v6.375"
-           />
-           <path
-                className={'stroke-semantics-yellow02'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               d="M12 4.875 6.75 2.249 1.5 4.875v6.375l5.25 2.625L12 11.25V4.875ZM12 4.875 17.25 7.5l5.25-2.625M17.25 7.5v6.375"
-           />
-           <path
-                className={'stroke-semantics-yellow02'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               d="m22.5 4.875-5.25-2.626L12 4.875v6.375l5.25 2.625 5.25-2.625V4.875ZM6.75 13.875 12 16.5l5.25-2.625M12 16.5v6.375"
-           />
-           <path
-                className={'stroke-semantics-yellow02'}
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeMiterlimit={10}
-               d="M17.25 13.875 12 11.249l-5.25 2.626v6.375L12 22.875l5.25-2.625v-6.375Z"
-           />
-       </svg>
-   );
-}
-const IconPrinter = () => {
+const IconInputSearch = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -496,30 +400,126 @@ const IconPrinter = () => {
             fill="none"
         >
             <path
-                className={'stroke-semantics-grey01'}
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="m22 22-6.343-6.343M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
+            />
+        </svg>
+    );
+}
+const IconFilter = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={`${props?.isActive ? (props?.isDarkMode ? 'stroke-semantics-green02' : 'stroke-semantics-green01') : (props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="m22 5-8 8v8l-4 2V13L2 5V2h20v3Z"
+            />
+        </svg>
+    );
+}
+const IconPen = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-brand01'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth={1.5}
+                d="M2.25 21.75h19.5M8.598 16.902l-5.25 1.5 1.5-5.25L14.973 3.027a2.651 2.651 0 1 1 3.75 3.75L8.598 16.902ZM13.5 4.5l3.75 3.75"
+            />
+        </svg>
+    );
+}
+const IconWarehouse = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-yellow02'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                d="M1.5 4.875 6.75 7.5 12 4.875M6.75 7.5v6.375"
+            />
+            <path
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-yellow02'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                d="M12 4.875 6.75 2.249 1.5 4.875v6.375l5.25 2.625L12 11.25V4.875ZM12 4.875 17.25 7.5l5.25-2.625M17.25 7.5v6.375"
+            />
+            <path
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-yellow02'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                d="m22.5 4.875-5.25-2.626L12 4.875v6.375l5.25 2.625 5.25-2.625V4.875ZM6.75 13.875 12 16.5l5.25-2.625M12 16.5v6.375"
+            />
+            <path
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-yellow02'}`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                d="M17.25 13.875 12 11.249l-5.25 2.626v6.375L12 22.875l5.25-2.625v-6.375Z"
+            />
+        </svg>
+    );
+}
+const IconPrinter = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+        >
+            <path
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={1.5}
                 d="M7.667 7V3.667c0-.736.597-1.333 1.333-1.333h6c.736 0 1.333.597 1.333 1.333V7"
             />
             <path
-                className={'stroke-semantics-grey01'}
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={1.5}
                 d="M7.667 17.667h-2A2.666 2.666 0 0 1 3 15V9.667A2.666 2.666 0 0 1 5.667 7h12.666A2.666 2.666 0 0 1 21 9.667V15a2.666 2.666 0 0 1-2.667 2.667h-2"
             />
             <path
-                className={'stroke-semantics-grey01'}
+                className={(props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-grey01')}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={1.5}
-               d="M16.333 13v7.333c0 .736-.597 1.334-1.333 1.334H9a1.334 1.334 0 0 1-1.333-1.334V13h8.666Z"
-           />
-       </svg>
-   );
+                d="M16.333 13v7.333c0 .736-.597 1.334-1.333 1.334H9a1.334 1.334 0 0 1-1.333-1.334V13h8.666Z"
+            />
+        </svg>
+    );
 }
-const IconRecycling = () => {
+const IconRecycling = (props: { isActive?: boolean, isDarkMode?: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -528,7 +528,7 @@ const IconRecycling = () => {
             fill="none"
         >
             <path
-                 className={'stroke-semantics-red02'}
+                className={`${props?.isDarkMode ? 'stroke-neutrals-400' : 'stroke-semantics-red02'}`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeMiterlimit={10}

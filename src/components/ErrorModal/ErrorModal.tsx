@@ -2,6 +2,7 @@ import {Modal} from "antd";
 import Button from "../Button";
 import {ReactNode} from "react";
 import ButtonGradient from "../ButtonGradient";
+import {useTheme} from "../../context/ThemeContext.tsx";
 
 interface ErrorModalProps {
     onCancel?: () => void;
@@ -14,19 +15,21 @@ interface ErrorModalProps {
 }
 
 const ErrorModal = (props: ErrorModalProps) => {
+    const {isDarkMode} = useTheme();
     return (
         <Modal
-
+            styles={{content: {backgroundColor: isDarkMode ? 'var(--color-dark-2C2C)' : ''},header: {color: isDarkMode ? 'var(--color-dark-2C2C)' : '',backgroundColor: isDarkMode ? 'var(--color-dark-2C2C)' : ''}}}
             destroyOnClose
-            title={props.title}
+            title={<div className={`${isDarkMode ? 'text-neutrals-400' : ''}`}>{props.title}</div>}
             footer={
                 <div className={'flex gap-x-[8px] w-full justify-end '}>
                     <Button
-                        className={'h-[40px]'}
+                        className={`${isDarkMode ? 'border-darkGrey-3838-important text-neutrals-50' : ''} h-[40px] `}
                         name={props.cancelText || 'Đóng'}
                         key="back" onClick={props?.onCancel}/>
                     <ButtonGradient
-                        className={'h-[40px] w-[150px]'}
+                        className={`${isDarkMode ? 'border-darkGrey-3838-important' : ''} 
+                        h-[40px] w-[150px]`}
                         onClick={props?.onOk}
                         name={props.okText || 'Xác nhận'}
                         key="submit"/>
@@ -36,7 +39,7 @@ const ErrorModal = (props: ErrorModalProps) => {
             open={props.open}
             onCancel={props?.onCancel}
         >
-            {props.children}
+                {props.children}
         </Modal>
     );
 };

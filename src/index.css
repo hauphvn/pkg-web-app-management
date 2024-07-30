@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply transition-all duration-150;
+    @apply transition-colors duration-[50ms];
+}
+
 :root {
     --color-brand01: theme('colors.brand01.DEFAULT');
     --color-brand02: theme('colors.brand02.DEFAULT');
@@ -10,163 +15,48 @@
     --color-neutrals-200: theme('colors.neutrals.200');
     --color-neutrals-300: theme('colors.neutrals.300');
     --color-neutrals-400: theme('colors.neutrals.400');
+    --color-neutrals-500: theme('colors.neutrals.500');
     --color-neutrals-900: theme('colors.neutrals.900');
     --color-semantics-grey01: theme('colors.semantics.grey01');
+    --color-semantics-grey02: theme('colors.semantics.grey02');
     --color-semantics-green02: theme('colors.semantics.green02');
     --color-border-gradient-from: theme('colors.greenFrom');
     --color-border-gradient-to: theme('colors.greenTo');
     --color-accent01: theme('colors.accent.a01');
+    --color-dark-3838-important: theme('colors.darkGrey.3838-important');
+    --color-dark-2E2E: theme('colors.darkGrey.2E2E');
+    --color-dark-2C2C: theme('colors.darkGrey.2C2C');
+    --color-dark-3636: theme('colors.darkGrey.3636');
+    --color-dark-2727: theme('colors.darkGrey.2727');
+    --color-darkGrey: theme('colors.darkGrey.2C2C');
     --color-box-shadow: #00000026;
 }
 
-table .ant-table-thead tr > th {
-    display: flex;
-    justify-content: center;
+.dark {
+    /*background-color: var(--color-darkGrey);*/
+    /*color: var(--color-neutrals-500);*/
 }
 
-.ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before, .ant-table-wrapper .ant-table-thead > tr > td:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
-    display: none;
+.placeholder-dark input::placeholder {
+    color: var(--color-semantics-grey02) !important; /* Example color for dark mode */
 }
 
-table .ant-table-thead > tr {
-    display: flex;
-    column-gap: 24px;
-    justify-content: space-between;
-    width: 100% !important;
+.border-dark {
+    border-color: var(--color-dark-2E2E) !important; /* Example color for dark mode */
 }
 
-table .ant-table-thead > tr > th {
-    padding: 0 !important;
+.placeholder-dark .ant-select-selection-placeholder {
+    color: var(--color-neutrals-400) !important; /* Example color for dark mode */
 }
 
-table .ant-table-thead > tr > th:nth-child(1) {
-    min-width: 10.82%;
-    padding-left: 10px;
-}
-
-table .ant-table-thead > tr > th:nth-child(2) {
-    min-width: 25.6%;
-}
-
-table .ant-table-thead > tr > th:nth-child(3) {
-    min-width: 19.49%;
-
-}
-
-table .ant-table-thead > tr > th:nth-child(4) {
-    min-width: 10.82%;
-}
-
-table .ant-table-thead > tr > th:nth-child(5) {
-    min-width: 24.25%;
-}
-
-table .ant-table-tbody {
-    display: flex;
-    flex-direction: column;
-    max-width: 100% !important;
-    width: 100% !important;
+.border-dark .ant-select-selector {
+    border-color: var(--color-dark-2E2E) !important; /* Example color for dark mode */
 }
 
 
-table .ant-table-tbody .ant-table-row-level-0 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--color-neutrals-300) !important;
-    border-radius: 8px !important;
-    margin-top: 24px;
+.placeholder-light::placeholder {
+    color: #808080; /* Example color for light mode */
 }
-
-table .ant-table-tbody .ant-table-row > td:nth-child(1) {
-    width: 10.82%;
-}
-
-table .ant-table-tbody .ant-table-row > td:nth-child(2) {
-    width: 25.6%;
-}
-
-table .ant-table-tbody .ant-table-row > td:nth-child(3) {
-    width: 19.49%;
-
-}
-
-table .ant-table-tbody .ant-table-row > td:nth-child(4) {
-    width: 10.82%;
-}
-
-table .ant-table-tbody .ant-table-row > td:nth-child(5) {
-    min-width: 24.25%;
-}
-
-table .ant-table-thead th.ant-table-cell {
-    background: var(--color-neutrals-50) !important;
-}
-
-
-.ant-table-wrapper .ant-table-column-sorter-up, .ant-table-column-sorter-down {
-    color: var(--color-neutrals-50);
-}
-
-.ant-table-thead .ant-table-column-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-table th.ant-table-cell > div {
-    font-size: 16px;
-    color: var(--color-neutrals-50);
-    background: var(--color-neutrals-900);
-    padding: 8px 24px 8px 24px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    width: 100%;
-}
-
-table thead tr th {
-    border-bottom: none !important;
-}
-
-.ant-table-tbody > tr {
-    margin-bottom: 24px !important;
-}
-
-.ant-table-tbody > tr {
-    transition: box-shadow 0.1s ease-in-out;
-}
-
-.ant-table-tbody > tr > td {
-    border: none !important;
-}
-
-.ant-table-tbody > tr {
-    /*margin-top: 24px!important;*/
-}
-
-.ant-table-tbody > tr:hover {
-    box-shadow: 1px 0 8px 0 var(--color-box-shadow);
-    overflow: hidden;
-}
-
-tbody tr.ant-table-row.ant-table-row-level-0 {
-    background: var(--color-neutrals-50);
-}
-
-
-tbody .ant-table-row .ant-table-cell {
-    padding: 12px 16px 12px 17px !important;
-}
-
-td.ant-table-cell {
-    background: var(--color-neutrals-50) !important;
-    color: var(--color-semantics-grey01)
-}
-
 /*custom css item*/
 .sub-item-manage-menu-left-line {
     border: 2px solid var(--color-neutrals-300);
@@ -183,9 +73,11 @@ td.ant-table-cell {
     top: 0;
     height: 40px;
 }
+
 /*config border-radius using gradient color for item*/
 .action-item-button-gradient {
 }
+
 .action-item-button-gradient::after {
 }
 
@@ -237,6 +129,7 @@ td.ant-table-cell {
     -webkit-transition: .4s;
     transition: .4s;
 }
+
 .switch-root-medium input:checked + .slider {
     background-color: var(--color-semantics-green02);
 }
@@ -326,6 +219,7 @@ td.ant-table-cell {
     -webkit-transition: .4s;
     transition: .4s;
 }
+
 .switch-root-small input:checked + .slider {
     background-color: var(--color-border-gradient-from);
 }
@@ -348,6 +242,7 @@ td.ant-table-cell {
 .switch-root-small .slider.round:before {
     border-radius: 50%;
 }
+
 /*end switch small*/
 
 /*editor*/
@@ -375,18 +270,14 @@ td.ant-table-cell {
     border-bottom: none;
 }
 
-#filter-product-root .ant-slider-track,
-#filter-product-root .ant-slider-rail {
-    height: 2px;
-}
-
 /*editor*/
 
 
 /*button ant custom*/
-.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: var(--color-semantics-grey01);
     border-color: var(--color-neutrals-300);
     background-color: var(--color-neutrals-200);
 }
+
 /*end button ant button*/

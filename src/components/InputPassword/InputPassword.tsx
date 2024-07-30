@@ -4,26 +4,30 @@ import {EyeInvisibleOutlined, EyeTwoTone} from '@ant-design/icons';
 
 interface InputProps extends Omit<AntInputProps, 'children'> {
     className?: string;
-    iconOpenEye?: ReactNode;
-    iconCloseEye?: ReactNode;
-    warning?: boolean
+    iconopeneye: ReactNode;
+    iconcloseeye: ReactNode;
+    warning?: string
 }
 
 const InputPassword = (props: InputProps) => {
     return (
         <InputAnt.Password
-            iconRender={(visible: boolean) => (visible ? (props?.iconOpenEye ? (<div className={' w-[24px] hover:cursor-pointer '}>
-                        {props.iconOpenEye}
+            iconRender={(visible: boolean) => (visible ? (props?.iconopeneye ?
+                    (<div className={' w-[24px] hover:cursor-pointer '}>
+                        {props.iconopeneye ? props.iconopeneye : <EyeTwoTone/>}
                     </div>) :
                     <EyeTwoTone/>
-            ) : (props?.iconCloseEye ? <div className={'w-[24px] hover:cursor-pointer'}>
-                        {props.iconCloseEye}
+            ) : (props?.iconcloseeye ? <div className={'w-[24px] hover:cursor-pointer'}>
+                        {props?.iconcloseeye ? props.iconcloseeye : <EyeInvisibleOutlined/>}
                     </div> :
                     <EyeInvisibleOutlined/>
             ))}
-            {...props}
+
             className={`
-        ${props?.className} w-full h-full rounded-[8px] px-[20px] py-[14px] ${props?.warning ? 'border-semantics-red02' : 'border-none'}  `}
+        w-full h-full rounded-[8px] px-[20px] py-[14px]
+         ${props?.warning !== '' ? 'border-semantics-red02' : 'border-none '} 
+          ` + props?.className}
+            {...props}
         />
     );
 };

@@ -17,6 +17,7 @@ export interface IProduct {
     isContactPrice?: boolean;
     isOnlineSale?: boolean;
 }
+
 export interface IResProduct {
     key: string;
     productID: string;
@@ -27,10 +28,11 @@ export interface IResProduct {
     price: string;
 }
 
-export interface IResProductEditSelected{
+export interface IResProductEditSelected {
     productID: string;
     productName: string;
     productCode: string;
-    actionType: 'update' | 'delete' |'unknown';
+    quantity: string;
+    actionType: 'update' | 'delete' | 'import-warehouse' | 'unknown';
     salePrice: string;
 }

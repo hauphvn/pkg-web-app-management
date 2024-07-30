@@ -69,7 +69,16 @@ export default {
             },
             required: {
                 DEFAULT: '#cd220c'
-            }
+            },
+            darkGrey: {
+                '2C2C': '#2C2C2C',
+                '3333':'#333333',
+                '3838':'#383838',
+                '3838-important':'#383838 !important',
+                '2E2E':'#2E2E2E',
+                '3636':'#363636',
+                '2727':'#272727',
+            },
         },
         extend: {
             boxShadow: {

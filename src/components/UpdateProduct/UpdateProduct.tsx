@@ -18,6 +18,7 @@ import {
 } from 'react-simple-wysiwyg';
 import ImageProductImport from "../ImageProductImport";
 import {IProduct} from "../../types";
+import {useTheme} from "../../context/ThemeContext.tsx";
 
 interface UpdateProductProps {
     show: boolean,
@@ -27,6 +28,7 @@ interface UpdateProductProps {
 }
 
 const UpdateProduct = (props: UpdateProductProps) => {
+    const {isDarkMode} = useTheme();
     const [tabIndex, setTabIndex] = useState<'info' | 'desc' | 'image'>('info');
     const [htmlDescription, setHtmlDescription] = useState('');
 
@@ -35,7 +37,7 @@ const UpdateProduct = (props: UpdateProductProps) => {
     }
 
     const {
-        formState: {errors,isDirty, isValid},
+        formState: {errors, isDirty, isValid},
         control: controlEditProduct,
         reset
     } = useForm({
@@ -71,32 +73,41 @@ const UpdateProduct = (props: UpdateProductProps) => {
         <Drawer
             width={489}
             className={'update-product-drawer transition-all duration-300'}
-            styles={{header: {paddingBottom: 0}}}
-            title={<div className={'text-semantics-grey01 text-[32px] font-[500]'}>{props?.productEdit?.productCode}</div>}
+            styles={{
+                body: {background: isDarkMode ? 'var(--color-dark-2E2E)' : ''},
+                header: {
+                    paddingBottom: 0,
+                    background: isDarkMode ? 'var(--color-dark-2E2E)' : '',
+                    borderBottomColor: isDarkMode ? 'var(--color-dark-2727)' : '--color-neutrals-50'
+                },
+            }}
+            title={<div
+                className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey01'}  text-[32px] font-[500]`}>
+                {props?.productEdit?.productCode}</div>}
             destroyOnClose maskClosable={false} closeIcon={null} onClose={props.onClose}
             open={props.show}>
             <div id={'update-product-container'}
-                 className={'update-product-container flex justify-between flex-col h-full w-[435px]'}>
+                 className={`${isDarkMode ? 'bg-darkGrey-2E2E' : ''} add-new-product-container flex justify-between flex-col h-full w-[435px]`}>
                 <div className="update-contents-container w-full">
                     <div className="actions-tab flex mb-[24px] fixed w-full gap-x-[17px] ">
                         <div
                             onClick={() => preOnTabClick('info')}
                             className={`
-                             ${tabIndex === 'info' ? ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]' : 'bg-neutrals-50 text-neutrals-700'} 
+                             ${tabIndex === 'info' ? (isDarkMode ? ' border-[1.5px] border-darkGrey-3838 bg-darkGrey-2E2E text-neutrals-400 font-[600]' : ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]') : (isDarkMode ? 'bg-darkGrey-3333 text-neutrals-600 ' : 'bg-neutrals-50 text-neutrals-700')}'} 
                               hover:cursor-pointer rounded-[8px] flex justify-center items-center  w-[131px] h-[42px]`}>
                             Thông tin
                         </div>
                         <div
                             onClick={() => preOnTabClick('desc')}
                             className={`
-                             ${tabIndex === 'desc' ? ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]' : 'bg-neutrals-50 text-neutrals-700'} 
+                            ${tabIndex === 'desc' ? (isDarkMode ? ' border-[1.5px] border-darkGrey-3838 bg-darkGrey-2E2E text-neutrals-400 font-[600]' : ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]') : (isDarkMode ? 'bg-darkGrey-3333 text-neutrals-600 ' : 'bg-neutrals-50 text-neutrals-700')}'} 
                                 hover:cursor-pointer rounded-[8px] flex justify-center items-center  w-[131px] h-[42px]`}>
                             Mô tả
                         </div>
                         <div
                             onClick={() => preOnTabClick('image')}
                             className={`
-                             ${tabIndex === 'image' ? ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]' : 'bg-neutrals-50 text-neutrals-700'} 
+                             ${tabIndex === 'image' ? (isDarkMode ? ' border-[1.5px] border-darkGrey-3838 bg-darkGrey-2E2E text-neutrals-400 font-[600]' : ' border-[1.5px] border-greenFrom bg-semantics-green03 text-semantics-green01 font-[600]') : (isDarkMode ? 'bg-darkGrey-3333 text-neutrals-600 ' : 'bg-neutrals-50 text-neutrals-700')}'} 
                                hover:cursor-pointer  rounded-[8px] flex justify-center items-center  w-[131px] h-[42px]`}>
                             Hình ảnh
                         </div>
@@ -107,7 +118,7 @@ const UpdateProduct = (props: UpdateProductProps) => {
                             control={controlEditProduct}
                             name='productName'
                             render={({field: {onChange, onBlur, value}}) => (
-                                <div className={'control h-[98px]'}>
+                                <div className={'control h-[98px] px-[2px]'}>
                                     <label htmlFor={'productName'}
                                            className={'label text-[12px] font-[500] text-neutrals-700 pb-[7px]'}>
                                         Tên sản phẩm
@@ -116,9 +127,9 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                     <div className={'relative flex '}>
                                         <div className={'w-full max-h-[50px]'}>
                                             <Input
-                                                warning={!!errors.productName?.message}
+                                                warning={errors.productName?.message}
                                                 id={'account'}
-                                                className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
                                                 placeholder={'Nhập tên sản phẩm'}
                                                 onChange={onChange}
                                                 onBlur={onBlur}
@@ -143,11 +154,11 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                         Cửa hàng
                                         <span className={'text-semantics-red02'}>*</span>
                                     </label>
-                                    <div className={'relative flex '}>
+                                    <div className={'relative flex px-[2px]'}>
                                         <div className={'w-full max-h-[50px]'}>
                                             <Select
                                                 suffixIcon={<IconSelectArrowLarge/>}
-                                                className={'control-add-product bg-neutrals-200 h-[50px]'}
+                                                className={`control-add-product custom-select-dropdown ${isDarkMode ? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : 'bg-neutrals-200 '} h-[50px] text-[12px]`}
                                                 options={[]} placeholder={'Chọn cửa hàng'}/>
                                         </div>
                                         <span
@@ -158,7 +169,8 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                 </div>
                             )}
                         />
-                        <div className={'horizontal-line w-full bg-neutrals-300 h-[1px] mb-[16px]'}></div>
+                        <div
+                            className={`${isDarkMode ? 'bg-darkGrey-3838' : 'bg-neutrals-300'} horizontal-line w-full h-[1px] mb-[16px]`}></div>
                         <div className={'text-semantics-red02 text-[12px] mb-[24px]'}>(*) Sản phẩm phải được nhập theo
                             giá ĐÃ TÍNH VAT
                         </div>
@@ -174,11 +186,11 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Cửa hàng
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Select
                                                         suffixIcon={<IconSelectArrowLarge/>}
-                                                        className={'control-add-product bg-neutrals-200 h-[50px]'}
+                                                        className={`control-add-product custom-select-dropdown ${isDarkMode ? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : 'bg-neutrals-200 '} h-[50px] text-[12px]`}
                                                         options={[]} placeholder={'Thời gian bảo hành'}/>
                                                 </div>
                                                 <span
@@ -194,7 +206,7 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                 <label className={'min-w-[109px] text-[14px] font-[500] text-neutrals-700'}
                                        htmlFor="isOnlineSale">Bán
                                     trực tuyến</label>
-                                <Switch  size={'medium'}
+                                <Switch
                                 />
                             </div>
                         </div>
@@ -210,11 +222,11 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Đơn vị tính
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Select
                                                         suffixIcon={<IconSelectArrowLarge/>}
-                                                        className={'control-add-product bg-neutrals-200 h-[50px]'}
+                                                        className={`control-add-product custom-select-dropdown ${isDarkMode ? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : 'bg-neutrals-200 '} h-[50px] text-[12px]`}
                                                         options={[]} placeholder={'Đơn vị tính'}/>
                                                 </div>
                                                 <span
@@ -245,12 +257,12 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Giá nhập
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.importPrice?.message}
+                                                        warning={errors.importPrice?.message}
                                                         id={'account'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
                                                         placeholder={'Nhập giá nhập'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -277,12 +289,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Giá bán
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.salePrice?.message}
+                                                        warning={errors.salePrice?.message}
                                                         id={'account'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập giá bán'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -311,12 +324,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Giảm giá
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.discount?.message}
+                                                        warning={errors.discount?.message}
                                                         id={'discount'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Giảm giá'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -343,12 +357,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Giá sau giảm
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.salePrice?.message}
+                                                        warning={errors.salePrice?.message}
                                                         id={'priceAfterDiscount'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Giá sau giảm'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -365,7 +380,8 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                 />
                             </div>
                         </div>
-                        <div className={'horizontal-line w-full bg-neutrals-300 h-[1px] mb-[16px]'}></div>
+                        <div
+                            className={`${isDarkMode ? 'bg-darkGrey-3838' : 'bg-neutrals-300'} horizontal-line w-full h-[1px] mb-[16px]`}></div>
                         <div className="form-row flex gap-x-[8px] w-full flex-auto items-center">
                             <div className={'flex-1'}>
                                 <Controller
@@ -378,12 +394,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Số lượng
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.quantity?.message}
+                                                        warning={errors.quantity?.message}
                                                         id={'quantity'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập số lượng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -410,12 +427,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Khối lượng
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.weight?.message}
+                                                        warning={errors.weight?.message}
                                                         id={'account'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập khối lượng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -444,12 +462,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Dài(mm)
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.importPrice?.message}
+                                                        warning={errors.importPrice?.message}
                                                         id={'length'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập chiều dài'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -476,12 +495,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Rộng(mm)
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.width?.message}
+                                                        warning={errors.width?.message}
                                                         id={'width'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập chiều rộng'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -508,12 +528,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                                 Cao(mm)
                                                 <span className={'text-semantics-red02'}>*</span>
                                             </label>
-                                            <div className={'relative flex '}>
+                                            <div className={'relative flex px-[2px] '}>
                                                 <div className={'w-full max-h-[50px]'}>
                                                     <Input
-                                                        warning={!!errors.salePrice?.message}
+                                                        warning={errors.salePrice?.message}
                                                         id={'height'}
-                                                        className={'bg-neutrals-200 h-[50px] pl-[11px]'}
+                                                        className={`${isDarkMode ? 'bg-darkGrey-3636 border-darkGrey-2E2E placeholder-semantics-grey02 text-semantics-grey03 ' : 'bg-neutrals-200'} h-[50px] pl-[11px]`}
+
                                                         placeholder={'Nhập chiều cao'}
                                                         onChange={onChange}
                                                         onBlur={onBlur}
@@ -534,7 +555,9 @@ const UpdateProduct = (props: UpdateProductProps) => {
                     <div
                         className={`${tabIndex === 'desc' ? 'visible' : 'hidden'} form-container mt-[70px] max-h-[70vh] overflow-y-scroll scroll-smooth`}>
                         <EditorProvider>
-                            <Editor value={htmlDescription} onChange={onChangeEditorDescription}>
+                            <Editor
+                                style={{color: isDarkMode ? 'var(--color-neutrals-400)' : ''}}
+                                value={htmlDescription} onChange={onChangeEditorDescription}>
                                 <Toolbar>
                                     <BtnRedo/>
                                     <BtnUndo/>
@@ -543,6 +566,7 @@ const UpdateProduct = (props: UpdateProductProps) => {
                                     <BtnUnderline/>
                                     <BtnLink/>
                                     <BtnStrikeThrough/>
+
                                     <BtnBulletList/>
                                     <BtnNumberedList/>
                                 </Toolbar>
@@ -565,8 +589,13 @@ const UpdateProduct = (props: UpdateProductProps) => {
 
                 </div>
                 <div className="submit-container flex gap-x-[8px] pt-[5px] ">
-                    <Button onClick={props.onClose} className={'w-[210px] h-[53px]'} name={'Hủy'}/>
-                    <ButtonGradient className={'w-[210px] h-[53px]'} disabled={!(isDirty && isValid)} name={'Cập nhật'}/>
+                    <Button onClick={props.onClose}
+                            className={`${isDarkMode ? 'border-darkGrey-3838-important text-neutrals-50' : ''} h-[53px] w-[210px]`}
+                            name={'Hủy'}/>
+                    <ButtonGradient
+                        className={`${isDarkMode ? 'border-darkGrey-3838-important' : ''} h-[53px] w-[210px]`}
+                        disabled={!(isDirty && isValid)}
+                        name={'Cập nhật'}/>
                 </div>
             </div>
         </Drawer>

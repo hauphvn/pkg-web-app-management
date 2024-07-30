@@ -1,3 +1,4 @@
 export const COOKIE_ITEMS = {
-    AUTH_TOKEN: 'auth'
+    AUTH_TOKEN: 'auth',
+    THEME: 'theme'
 }

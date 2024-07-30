@@ -1,11 +1,14 @@
 import Input from "../Input";
+import './filterProductStyle.css';
 import {Slider, SliderSingleProps} from "antd";
 import Switch from "../Swtich";
 import ButtonGradient from "../ButtonGradient";
 import {useEffect, useState} from "react";
 import {FormatCurrency} from "../../constants";
+import {useTheme} from "../../context/ThemeContext.tsx";
 
 const FilterProduct = () => {
+    const{isDarkMode} = useTheme();
     const [valueRange, setValueRange] = useState<number[]>([1000_000, 1000_000_000])
     const formatter: NonNullable<SliderSingleProps['tooltip']>['formatter'] = (value) => FormatCurrency(value ? value : 0);
     const [enableOutOfStock, setEnableOutOfStock] = useState(false);
@@ -24,14 +27,15 @@ const FilterProduct = () => {
         }
     }, [enableOutOfStock])
     return (
-        <div id={'filter-product-root'}
-             className={'filter-product-root flex flex-col gap-y-[24px] bg-neutrals-50 shadow-button-1 border-[0.5px] border-neutrals-300 rounded-[8px] w-[222px] h-auto px-[8px] py-[10px]'}>
+        <div id={`${isDarkMode ? 'filter-product-dark-mode-root' : 'filter-product-light-mode-root'}`}
+             className={`${isDarkMode ? 'bg-darkGrey-3333 border-darkGrey-2727' : 'bg-neutrals-50 border-neutrals-300 '} filter-product-root flex flex-col gap-y-[24px] shadow-button-1 
+             border-[0.5px]  rounded-[8px] w-[222px] h-auto px-[8px] py-[10px]`}>
             <div className="price-filter flex gap-x-[4px]">
                 <Input
-                    className={'bg-neutrals-200 rounded-[4px] h-[30px] pl-[10px]'}
+                    className={`${isDarkMode ? 'bg-darkGrey-3838 border-darkGrey-3838 text-neutrals-400 placeholder-neutrals-400' : 'bg-neutrals-200'}  rounded-[4px] h-[30px] pl-[10px]`}
                     placeholder={'Giá nhập'}/>
                 <Input
-                    className={'bg-neutrals-200 rounded-[4px] h-[30px] pl-[10px]'}
+                    className={`${isDarkMode ? 'bg-darkGrey-3838 border-darkGrey-3838 text-neutrals-400 placeholder-neutrals-400' : 'bg-neutrals-200'} rounded-[4px] h-[30px] pl-[10px]`}
                     placeholder={'Giá bán'}/>
             </div>
             <div>
@@ -54,14 +58,17 @@ const FilterProduct = () => {
                 <Input
                     onChange={(e) => setOutOfStockValue(e?.target?.value)}
                     value={outOfStockValue}
-                    disabled={!enableOutOfStock} className={'bg-neutrals-200 rounded-[4px] h-[30px] pl-[10px]'}
+                    disabled={!enableOutOfStock}
+                    className={`${isDarkMode ? 'bg-darkGrey-3838 border-darkGrey-3838 disabled:border-darkGrey-2727 text-neutrals-400 placeholder-neutrals-400' : 'bg-neutrals-200'} rounded-[4px] h-[30px] pl-[10px]`}
                     placeholder={'Còn'}/>
                 <Switch
                     checked={enableOutOfStock}
                     onChange={(checked) => setEnableOutOfStock(checked)}
                     size={'small'}/>
             </div>
-            <ButtonGradient className={'h-[34px] w-full'} name={'Áp dụng'}/>
+            <ButtonGradient
+                className={`${isDarkMode ? 'border-darkGrey-3838-important' : ''} h-[34px] w-full`}
+                name={'Áp dụng'}/>
         </div>
     );
 };

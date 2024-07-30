@@ -8,11 +8,12 @@ interface ButtonProps extends Omit<AntButtonProps, 'children'> {
 const Button = (props: ButtonProps) => {
     return (
         <ButtonAnt
-            {...props}
+
             className={`text-greenFrom font-[500] bg-neutrals-50
         rounded-[8px] px-[26px]  border-neutrals-300 border 
         ${props.className}`}
-           >
+            {...props}
+        >
             {props.name}
         </ButtonAnt>
     );

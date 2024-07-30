@@ -11,9 +11,18 @@ import Store from "./pages/Store";
 import {useEffect, useState} from "react";
 import Logo from '../src/assets/imgs/left-logo.png';
 import Notfound from "./pages/Notfound";
+import {ThemeProvider, useTheme} from "./context/ThemeContext.tsx";
 
-function App() {
-    const [isMobile, setIsMobile] = useState(false)
+const App = () => {
+    return (
+        <ThemeProvider>
+            <MainComponent/>
+        </ThemeProvider>
+    )
+}
+function MainComponent() {
+    const [isMobile, setIsMobile] = useState(false);
+    const {isDarkMode} = useTheme();
     useEffect(() => {
         const checkMobileDevice = () => {
         }
@@ -28,7 +37,7 @@ function App() {
         <>
             {isMobile ? (
                 <div
-                    className="fixed top-0 left-0 w-full h-full bg-gray-900 text-white flex flex-col items-center justify-center z-50">
+                    className={` ${isDarkMode ? 'dark' : 'light'} fixed top-0 left-0 w-full h-full bg-gray-900 text-white flex flex-col items-center justify-center z-50`}>
                     <img src={Logo} alt={'logo'}/>
                     <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
                         <h2 className="text-2xl font-bold mb-4 text-primary">

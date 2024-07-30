@@ -1,3 +1,4 @@
+import './tableProductStyle.css';
 import Button from "../../components/Button";
 import ButtonGradient from "../../components/ButtonGradient";
 import {
@@ -12,13 +13,15 @@ import Select from "../../components/Select";
 import {SelectOption} from "../../components/Select/Select.tsx";
 import Input from "../../components/Input";
 import {Table, TableProps} from "antd";
-import ProductImg from '../../assets/imgs/productImg.png'
+import ProductImg from '../../assets/imgs/productImg.png';
 import {useEffect, useState} from "react";
 import AddNewProduct from "../../components/AddNewProduct";
 import {IResProduct, IResProductEditSelected} from "../../types";
 import UpdateProduct from "../../components/UpdateProduct";
 import FilterProduct from "../../components/FilterProduct";
 import ErrorModal from "../../components/ErrorModal/ErrorModal.tsx";
+import {useTheme} from "../../context/ThemeContext.tsx";
+import ImportWarehouseProduct from "../../components/ImportWarehouseProduct";
 
 const categories: SelectOption[] = [
     {label: 'Category 1', value: '1'},
@@ -84,6 +87,7 @@ interface ISearchParam {
 }
 
 const Product = () => {
+    const{isDarkMode} = useTheme();
     const [showAddNew, setShowAddNew] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const [delayInputSearch, setDelayInputSearch] = useState('');
@@ -97,13 +101,14 @@ const Product = () => {
             productID: '',
             salePrice: '',
             productName: '',
+            quantity: '',
             productCode: '',
             actionType: 'unknown'
         })
     }
     const columns: TableProps<IResProduct>['columns'] = [
         {
-            title: () => (<div className={'w-[116px]'}>Hình ảnh</div>),
+            title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} w-[116px]`}>Hình ảnh</div>),
             dataIndex: 'image',
             key: 'image',
             align: 'center',
@@ -116,7 +121,7 @@ const Product = () => {
             },
         },
         {
-            title: () => (<div className={''}>Sản phẩm</div>),
+            title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Sản phẩm</div>),
             dataIndex: 'productName',
             key: 'productName',
             align: 'center',
@@ -127,14 +132,14 @@ const Product = () => {
                         <div className={' font-[600] text-[20px]'}>
                             {productName}
                         </div>
-                        <div className={'text-[14px]'}><span className={'text-semantics-grey02'}>Giá bán:</span> <span
+                        <div className={'text-[14px]'}><span className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Giá bán:</span> <span
                             className={'text-accent-a01'}>{price} VND</span></div>
                     </div>
                 )
             }
         },
         {
-            title: () => (<div className={''}>Mã sản phẩm</div>),
+            title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Mã sản phẩm</div>),
             dataIndex: 'productCode',
             key: 'productCode',
             align: 'center',
@@ -148,7 +153,7 @@ const Product = () => {
             }
         },
         {
-            title: () => (<div className={''}>Số lượng</div>),
+            title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Số lượng</div>),
             dataIndex: 'amount',
             key: 'amount',
             align: 'center',
@@ -162,25 +167,25 @@ const Product = () => {
             }
         },
         {
-            title: () => (<div className={''}>Chỉnh sửa</div>),
+            title: () => (<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Chỉnh sửa</div>),
             dataIndex: 'action',
             key: 'action',
             align: 'center',
-            render: (_, {productID, productName, price, productCode}) => {
+            render: (_, {productID, productName, price, productCode, amount}) => {
                 return (
                     <div className={' flex flex-col gap-y-[10px] w-full justify-center items-center'}>
                         <div className="print-container gap-x-[12px] flex items-center">
                             <div
-                                className="print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] border-neutrals-500 rounded-[8px]">
-                                <input className={'w-[50px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                className={`${isDarkMode ? 'border-darkGrey-3838 bg-darkGrey-3333' : 'border-neutrals-500'} print-data w-[187px] flex  gap-x-[8px] h-[38px] px-[18px] py-[12px] items-center justify-between border-[0.5px] rounded-[8px]`}>
+                                <input className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[50px] outline-0 text-[12px] p-0 m-0 leading-none`}
                                        placeholder={'TL Vàng'} type="text"/>
-                                <div className={'border-semantics-grey01 border-l-[1px] h-[14px]'}></div>
-                                <input className={'w-[84px] outline-0 text-[12px] p-0 m-0 leading-none'}
+                                <div className={`border-semantics-grey01 border-l-[1px] h-[14px]`}></div>
+                                <input className={`${isDarkMode ? 'bg-darkGrey-3333' : ''} w-[84px] outline-0 text-[12px] p-0 m-0 leading-none`}
                                        placeholder={'Tiền công'} type="text"/>
                             </div>
                             <div
-                                className="printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]">
-                                <IconPrinter/>
+                                className={`${isDarkMode ? 'bg-darkGrey-2E2E' : ''} printer hover:cursor-pointer shadow-button-1 w-[40px] h-[40px] flex justify-center items-center rounded-[8px]`}>
+                                <IconPrinter isDarkMode={isDarkMode}/>
                             </div>
                         </div>
                         <div className="actions-container flex gap-x-[12px] ">
@@ -190,14 +195,11 @@ const Product = () => {
                                     productName,
                                     price,
                                     productCode,
+                                    quantity: amount,
                                     actionType: 'update'
                                 })}
-                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                                <IconPen/>
-                            </div>
-                            <div
-                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                                <IconWarehouse/>
+                                className={` ${isDarkMode ? 'bg-darkGrey-2E2E' : ''} icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] `}>
+                                <IconPen  isDarkMode={isDarkMode}/>
                             </div>
                             <div
                                 onClick={() => onEditProduct({
@@ -205,10 +207,23 @@ const Product = () => {
                                     productName,
                                     price,
                                     productCode,
+                                    quantity: amount,
+                                    actionType: 'import-warehouse'
+                                })}
+                                className={` ${isDarkMode ? 'bg-darkGrey-2E2E' : ''} icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] `}>
+                                <IconWarehouse isDarkMode={isDarkMode}/>
+                            </div>
+                            <div
+                                onClick={() => onEditProduct({
+                                    productID,
+                                    productName,
+                                    price,
+                                    productCode,
+                                    quantity: amount,
                                     actionType: 'delete'
                                 })}
-                                className="icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] ">
-                                <IconRecycling/>
+                                className={` ${isDarkMode ? 'bg-darkGrey-2E2E' : ''} icon rounded-[8px] py-[8px] px-[24px] shadow-button-1 hover:cursor-pointer w[72px] h-[40px] `}>
+                                <IconRecycling isDarkMode={isDarkMode}/>
                             </div>
                         </div>
                     </div>
@@ -221,15 +236,20 @@ const Product = () => {
         salePrice: '',
         productName: '',
         productCode: '',
+        quantity: '',
         actionType: 'unknown'
     })
     const [showUpdate, setShowUpdate] = useState(false);
+    const [showImportWarehouseProduct, setShowImportWarehouseProduct] = useState(false);
     useEffect(() => {
         if (productEdit?.productID) {
             if (productEdit?.actionType === 'update') {
                 setShowUpdate(true);
             } else if (productEdit?.actionType === 'delete') {
                 setShowModalDelete(true);
+            }
+            else if (productEdit?.actionType === 'import-warehouse') {
+                setShowImportWarehouseProduct(true);
             }
         }
     }, [productEdit?.productID])
@@ -251,13 +271,15 @@ const Product = () => {
         price: string;
         productName: string,
         productCode: string,
-        actionType: 'update' | 'delete'
+        quantity: string,
+        actionType: 'update' | 'delete' | 'import-warehouse'
     }) {
         setProductEdit({
             productID: param.productID,
             salePrice: param.price,
             productName: param.productName,
             productCode: param.productCode,
+            quantity: param.quantity,
             actionType: param.actionType
         });
     }
@@ -273,6 +295,10 @@ const Product = () => {
     function preOnCloseUpdate() {
         onResetProductEdit();
         setShowUpdate(false);
+    }
+    function preOnCloseImportWarehouseProduct() {
+        onResetProductEdit();
+        setShowImportWarehouseProduct(false);
     }
 
     function preHandlerSearch(value: string) {
@@ -293,28 +319,29 @@ const Product = () => {
     return (
         <div>
             <div
-                className="titleContainer h-[88px] border-b-neutrals-300 border-b-[1px] pl-[32px] pr-[33px] flex justify-between items-center">
-                <div className="title text-semantics-grey01 text-[32px]">Sản phẩm</div>
+                className={`${isDarkMode ? 'text-neutrals-400 border-b-darkGrey-2727' : 'text-semantics-grey01 border-b-neutrals-300'} titleContainer h-[88px] border-b-[1px] pl-[32px] pr-[33px] flex justify-between items-center`}>
+                <div className="title  text-[32px]">Sản phẩm</div>
                 <div className={'flex gap-x-[25px]'}>
                     <Button
-                        icon={<IconManageMenu/>}
-                        className={'h-[40px] shadow-button-1'}
+                        icon={<IconManageMenu isDarkMode={isDarkMode}/>}
+                        className={`${isDarkMode ? 'bg-darkGrey-3333 border-darkGrey-3838 text-neutrals-400' : ''} h-[40px] shadow-button-1`}
                         name={'Nhập theo danh sách'}/>
                     <ButtonGradient
                         onClick={preOnShowAddNew}
                         icon={<IconPlus/>}
-                        className={'h-[40px] w-[162px] text-[16px]  px-[24px] gap-x-[14px]'}
+                        className={`${isDarkMode ? 'border-darkGrey-3838-important border' : ''} h-[40px] w-[162px] text-[16px]  px-[24px] gap-x-[14px]`}
                         name={'Thêm mới'}/>
                 </div>
             </div>
-            <div className="action-filter-container h-[88px] px-[24px] py-[32px] flex  justify-between">
+            <div className={`${isDarkMode ? 'text-neutrals-400' : 'text-neutrals-700'} action-filter-container h-[88px] px-[24px] py-[32px] flex  justify-between`}>
                 <div className={'flex gap-x-[20px] w-[325px] items-center'}>
-                    <label className={'text-neutrals-700 text-[14px]'} htmlFor="categories">Danh sách:</label>
+                    <label className={' text-[14px]'} htmlFor="categories">Danh sách:</label>
                     <div className={' w-[230px] flex items-center'}>
                         <Select
+                            isDarkMode={isDarkMode}
                             maxTagCount={1}
                             suffixIcon={<IconSelectArrowButton/>}
-                            className={' h-[38px] text-[12px]'}
+                            className={`custom-select-dropdown ${isDarkMode? 'placeholder-dark border-dark bg-darkGrey-2E2E rounded-[8px] select-dark-content ' : ''} h-[38px] text-[12px]`}
                             id={'categories'}
                             options={categories}
                             placeholder={'Tất cả'}/>
@@ -323,14 +350,14 @@ const Product = () => {
                 <div className={'flex items-center gap-x-[20px]'}>
                     <Input
                         onChange={(e) => preHandlerSearch(e?.target?.value)}
-                        suffix={<IconInputSearch/>}
-                        className={'text-[12px] text-semantics-grey01 h-[40px] w-[230px] rounded-[8px] shadow-button-1 focus-within:shadow-button-1'}
+                        suffix={<IconInputSearch isDarkMode={isDarkMode}/>}
+                        className={`text-[12px]  h-[40px] w-[230px] rounded-[8px] ${!isDarkMode ? 'shadow-button-1 focus-within:shadow-button-1' : ' text-neutrals-400 border-dark placeholder-dark'}`}
                         placeholder={'Tìm kiếm sản phẩm'}/>
                     <div className={'relative'}>
                         <Button
                             onClick={() => setShowFilter(!showFilter)}
-                            className={'text-semantics-grey01 text-[16px] h-[40px] shadow-button-1'}
-                            icon={<IconFilter/>}
+                            className={` ${isDarkMode ? 'text-neutrals-400 border-none hover:bg-darkGrey-2E2E ' : ''} text-[16px] h-[40px] shadow-button-1`}
+                            icon={<IconFilter isDarkMode={isDarkMode}/>}
                             name={'Bộ lộc'}/>
                         <div className={'absolute top-[3rem] right-0 z-20'}>
                             {showFilter && <FilterProduct/>}
@@ -340,6 +367,7 @@ const Product = () => {
             </div>
             <div className="table-container mt-[24px] pl-[24px] pr-[32px]">
                 <Table
+                    id={`${isDarkMode ? 'table-product-dark-mode' : 'table-product-light-mode'}`}
                     scroll={{x: '100%', y: '67vh'}}
                     pagination={{position: ["bottomCenter"]}}
                     columns={columns} dataSource={products}
@@ -350,12 +378,13 @@ const Product = () => {
             </div>
             <AddNewProduct show={showAddNew} onClose={preOnCloseAddNew}/>
             <UpdateProduct show={showUpdate} onClose={preOnCloseUpdate} productEdit={productEdit}/>
+            <ImportWarehouseProduct show={showImportWarehouseProduct} onClose={preOnCloseImportWarehouseProduct} productEdit={productEdit}/>
             <ErrorModal
-                title={<div className={'text-semantics-grey01'}>Xoá sản phẩm</div>}
+                title={<div className={`${isDarkMode ? 'dark-mode' : ' '} `}>Xoá sản phẩm</div>}
                 onCancel={preOnCloseDelete}
                 onOk={onHandleDelete} open={showModalDelete}>
                 <div className={'p-6'}>
-                    <p className={'text-semantics-grey02'}>Bạn có chắc chắn muốn <span className={'text-semantics-red02'}>xoá</span> sản phẩm {' '}
+                    <p className={`${isDarkMode ? 'text-neutrals-400' : 'text-semantics-grey02'}`}>Bạn có chắc chắn muốn <span className={'text-semantics-red02'}>xoá</span> sản phẩm {' '}
                         <span className={'font-bold'}>{productEdit.productName}</span>
                         {' '}này không?</p>
                 </div>
