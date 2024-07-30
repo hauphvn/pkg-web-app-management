@@ -6,7 +6,9 @@
     @apply transition-all duration-150;
     @apply transition-colors duration-[50ms];
 }
-
+table{
+    table-layout: auto!important;
+}
 :root {
     --color-brand01: theme('colors.brand01.DEFAULT');
     --color-brand02: theme('colors.brand02.DEFAULT');
