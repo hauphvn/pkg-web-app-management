@@ -4,7 +4,8 @@ import {stringNormal, stringRequired} from "./YupValidation.ts";
 export const formLoginSchema = () => {
     return yup.object().shape({
         account: stringRequired,
-        password: stringRequired
+        password: stringRequired,
+        keyEnv: stringRequired,
     })
 }
 
@@ -58,5 +59,6 @@ export const formAddEditProductDefault = {
 }
 export const formLoginDefault = {
     account: '',
-    password: ''
+    password: '',
+    keyEnv: '',
 }
