@@ -9,7 +9,7 @@ interface Props {
 
 const ProtectedRoute = ({children}: Props) => {
     const {isAuthenticated} = useAuth();
-    const isVerified = isAuthenticated || localStorage.getItem("isAuthenticated") || sessionStorage;
+    const isVerified = isAuthenticated || localStorage.getItem("isAuthenticated") || sessionStorage.getItem("isAuthenticated");
     if (!isVerified) {
         return <Navigate to={ROUTES_PATH.LOGIN} replace/>
     }
