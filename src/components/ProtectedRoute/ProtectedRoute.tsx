@@ -9,8 +9,8 @@ interface Props {
 
 const ProtectedRoute = ({children}: Props) => {
     const {isAuthenticated} = useAuth();
-    console.log('isAuthenticated ProtectedRoute', isAuthenticated);
-    if (!isAuthenticated) {
+    const isVerified = isAuthenticated || localStorage.getItem("isAuthenticated") || sessionStorage;
+    if (!isVerified) {
         return <Navigate to={ROUTES_PATH.LOGIN} replace/>
     }
     return children;

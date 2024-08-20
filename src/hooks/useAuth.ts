@@ -1,25 +1,22 @@
 import {useState} from "react";
 import Cookies from "js-cookie";
 import {COOKIE_ITEMS} from "../constants";
+import {clearToken} from "../utils";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!Cookies.get(COOKIE_ITEMS.AUTH_TOKEN));
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const login = async  (token: string) => {
+    const login = async  () => {
         return new Promise<boolean>(
-            (resolve, reject) => {
-                if (token) {
-                    Cookies.set(COOKIE_ITEMS.AUTH_TOKEN, token);
+            (resolve) => {
                     setIsAuthenticated(true);
                     resolve(true);
-                } else {
-                    reject(false);
-                }
             }
         )
     }
     const logout = () => {
-        Cookies.remove(COOKIE_ITEMS.AUTH_TOKEN);
+        // Cookies.remove(COOKIE_ITEMS.AUTH_TOKEN);
+        clearToken();
         return setIsAuthenticated(false);
     };
     const getToken = () => Cookies.get(COOKIE_ITEMS.AUTH_TOKEN);
