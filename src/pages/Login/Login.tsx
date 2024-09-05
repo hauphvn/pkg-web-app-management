@@ -24,6 +24,7 @@ import 'react-simple-toasts/dist/theme/light.css';
 import {LoaderPinwheel} from "lucide-react";
 import {Role, UserInfo} from "../../types";
 import {onSaveToken} from "../../utils";
+import {API_PATH} from "../../constants/Path.ts";
 
 // const userTest: Credential = {
 //     "dataBody": "jOx71IJXJuZGL8XBOk1oRUpXEuXy51OzTlluitocCCtqnH9POYdoJyNml2qjSDq0wDhWEs0xRoQE8Rq7gnaEbnV133D9enYgK/nLNX2hy8OhxB/XyTMANznM3BuVtuV3jicmFh4NlvcxgXb47/6FYq8BBnAYHQ+3VmxipdHQeUhoMxDiVIzziYUfFIa+KL5//tAvzf1DGQ9J/2hou1HLckCphB+k0KwLpbiXBQXfb2ArI8B0nBhVrrgHUB1QatYtcIEMuod2VKkowdYnwmfISLpVat5PV5vbLzCfvt4C5VnszIOF02trpqakTZP9TtMEFWbjQcM1LmUjoaaGEAGox7jLpz+Qlv34prGIqykHxsbfQ8k+8ULTF7XyYl3KUeCT0mIOl7WE/ncH3tZs9AbmfeJ1oNm1RJE0UkL01jOeLQ28eBVNiI1BpN1MsMCYl1ys",
@@ -64,7 +65,7 @@ const Login = () => {
         }
     }, [isAuthenticated, navigate]);
     const loginUser = (credentials: Credential): Promise<AxiosResponse<LoginResponse>> => {
-        return post('/auth/login', credentials);
+        return post(API_PATH.EMPLOYEE_LOGIN, credentials);
     }
     const loginMutation = useMutation({
         mutationFn: loginUser,

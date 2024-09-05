@@ -6,3 +6,7 @@ export const ROUTES_PATH ={
     STORE: '/dashboard/stories',
     LOGIN: '/login'
 }
+
+export const API_PATH = {
+    EMPLOYEE_LOGIN: '/auth/employee/login',
+}
